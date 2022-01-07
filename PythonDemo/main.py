@@ -18,6 +18,14 @@ def main():
     tuple_: tuple = (0, 1, "23", False)
     list_: list = [1, 2, 0.5, False, "4"]
 
+    print(type(integer), "integer")
+    print(type(string), "string")
+    print(type(float_), "float_")
+    print(type(bool_), "bool_")
+    print(type(tuple_), "tuple_")
+    print(type(list_), "list_")
+
+
     # logic operators
 
     # False = 0
@@ -71,11 +79,9 @@ def main():
     print(f"{integer+1=} {integer-1=} {integer*1=} {integer/1=}")
     # print(f"{integer.__add__(1)=} {integer.__sub__(1)=} {integer.__mul__(1)=} {integer.__divmod__(1)=}")
 
-    print(f"{string.lower()=} {integer-1=} {integer*1=} {integer/1=}")
-
     print(f"{string.lower()=} {string.upper()=} {string.isupper()=}")
 
-    print(f"{tuple_.count(1)=} {tuple_.count(0)}")
+    print(f"{tuple_.count(1)=} {tuple_.count(0)=}")
 
     print(f"{list_[1]=}")
 
@@ -132,13 +138,14 @@ class MyClass(Circle):
         super().__init__(name, x, y)
 
     def a(self):
-        return (pi * self.r) ** 2  # pow(pi*self.r), 2)
+        return (pi * self.r) ** 2  # ADD build in function
 
 
 if __name__ == '__main__':
     print("Hello, World!")
     print("Universe!")
-    # main()
+
+    main()
 """
     k = 2  # Circle
     kx = 2  #
