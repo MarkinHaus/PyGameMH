@@ -60,7 +60,7 @@ if __name__ == '__main__':
     step = "0"
     coll_count = 0
     for i in range(1000):
-        dt = clock.tick(60) / 10
+        dt = clock.tick(25) / 10
         p = i * 100 / 1000
         print(f"{p}% step {step} | 3 dt: {dt} ")
 
@@ -126,15 +126,15 @@ if __name__ == '__main__':
                 if Physics.border_right_collision(sprite):
                     sprite.mx *= -1
 
-                if Physics.border_top_collision(sprite, screen):
+                if Physics.border_top_collision(sprite):
                     sprite.my *= -1
 
-                if Physics.border_bottom_collision(sprite):
+                if Physics.border_bottom_collision(sprite, screen):
                     sprite.my *= -1
 
                 if sprite.collision_list:
-                    sprite.mx *= -1
-                    sprite.my *= -1
+                    sprite4.x = random.randint(6, 720)
+                    sprite4.y = random.randint(6, 720)
                     sprite.set_color(
                         random.choice(["black", "red", "green", "blue", "yellow", "purple", "azul", "white"]))
 
@@ -142,8 +142,6 @@ if __name__ == '__main__':
             list(map(f, sprites))
 
             text.show(f"Testing sprite collision {p}%", (0, 80), (255, 255, 255))
-
-            text.show(f"Collision num : {coll_count}", (screen.width / 2 - 300, 60), (255, 255, 255))
 
         mouse.show_m(False)
         pygame.display.update()

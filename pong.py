@@ -17,7 +17,7 @@ def functional():
     sprite3 = Sprite(screen, "circle")  # ball
 
     # ball starting conditions
-    sprite3.fx(2)
+    sprite3.fx(4)
     sprite3.fy(0)
 
     # players starting conditions
@@ -34,7 +34,7 @@ def functional():
     # construct sprites
     sprite1.make_sprite("rect", 1, game_pad_width, game_pad_height, color="blue")
     sprite2.make_sprite("rect", 1, game_pad_width, game_pad_height, color="white")
-    sprite3.make_sprite("circle", 1, radius=6, color="white")
+    sprite3.make_sprite("circle", 1, radius=10, color="white")
 
     # add sprites to sprites array
     sprites += [sprite1, sprite2, sprite3]
@@ -98,22 +98,22 @@ def functional():
 
         Physics.collision(sprites)
 
-        if Physics.border_top_collision(sprite1, screen):
+        if Physics.border_top_collision(sprite1):
             sprite1.my = -1
 
-        if Physics.border_bottom_collision(sprite1):
+        if Physics.border_bottom_collision(sprite1, screen):
             sprite1.my = 1
 
-        if Physics.border_top_collision(sprite2, screen):
+        if Physics.border_top_collision(sprite2):
             sprite2.my = -1
 
-        if Physics.border_bottom_collision(sprite2):
+        if Physics.border_bottom_collision(sprite2, screen):
             sprite2.my = 1
 
-        if Physics.border_top_collision(sprite3, screen):
+        if Physics.border_top_collision(sprite3):
             sprite3.my *= -1
 
-        if Physics.border_bottom_collision(sprite3):
+        if Physics.border_bottom_collision(sprite3, screen):
             sprite3.my *= -1
 
         if Physics.border_left_collision(sprite3, screen):
@@ -145,7 +145,7 @@ def functional():
         text.show(f"PL2 Life {life_pl2}", (screen.width - 150, 30), (255, 255, 255))
         text.show(f"PL1 Life {life_pl1}", (20, 30), (255, 255, 255))
 
-        if any(sprite3.collision_list):
+        if bool(sprite3.collision_list):
             if sprite3.collision_list[0][0] == sprite2:
                 sprite3.x = sprite2.x - (game_pad_width + of_x + 1)
                 sprite3.fy(sprite2.my * (4 - life_pl2) / 2)
@@ -154,7 +154,7 @@ def functional():
             # cp.append((sprite3.collision_list[0][1]))
             sprite3.set_color(random.choice(["red", "blue", "yellow", "purple", "azul", "white"]))
 
-        if any(sprite3.collision_list):
+        if bool(sprite3.collision_list):
             if sprite3.collision_list[0][0] == sprite1:
                 sprite3.x = sprite1.x + (game_pad_width + of_x + 1)
                 sprite3.fy(sprite1.my * (4 - life_pl1) / 2)
@@ -173,6 +173,7 @@ def functional():
             life_pl1 += 1
             if life_pl1 == -1:
                 life_pl1 = 3
+                life_pl2 = 3
                 sprite3.fx(random.randint(-2, 2))
                 sprite3.fy(random.randint(-2, 2))
 
@@ -185,6 +186,7 @@ def functional():
                 life_pl2 = -250
             life_pl2 += 1
             if life_pl2 == -1:
+                life_pl1 = 3
                 life_pl2 = 3
                 sprite3.fx(random.randint(-2, 2))
                 sprite3.fy(random.randint(-2, 2))

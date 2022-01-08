@@ -144,8 +144,8 @@ class Sprite:
                     # compute_dist
                     g = list(map(lambda x: sqrt((self.x - x[0]) ** 2 +
                                                 (self.y - x[1]) ** 2), outline_rect))
-                    # for p in outline_rect:
-                    #     pygame.draw.rect(self.screen.surface, (255, 0, 255), (p[0], p[1], 2, 2))
+                    for p in outline_rect:
+                        pygame.draw.rect(self.screen.surface, (255, 0, 255), (p[0], p[1], 2, 2))
 
                     if min(g) <= self.radius:
                         self.add_col_sprite(sprite, outline_rect[g.index(min(g))])
@@ -190,6 +190,7 @@ class Background:
 
     def show(self, move_x=False, speed_x=15, move_y=False, speed_y=15, dt=1):
         if move_x:
+            self.y = 0
             self.x += speed_x
             self.img.x = self.x
             self.img.move(dt)
@@ -204,7 +205,9 @@ class Background:
         else:
             self.img.x = 0
             self.img2.x = self.img.x
+
         if move_y:
+            self.x = 0
             self.y += speed_y
             self.img.y = self.y
             self.img.move(dt)
@@ -316,21 +319,21 @@ class Physics:
         return sprite.x <= 0
 
     @staticmethod
-    def border_top_collision(sprite, screen: Screen):
-        # sprite.my *= -1
-        return sprite.y + sprite.height >= screen.height
-
-    @staticmethod
-    def border_bottom_collision(sprite):
+    def border_top_collision(sprite):
         # sprite.my *= -1
         return sprite.y <= 0
+
+    @staticmethod
+    def border_bottom_collision(sprite, screen: Screen):
+        # sprite.my *= -1
+        return sprite.y + sprite.height >= screen.height
 
     @staticmethod
     def border_collision(sprite, screen: Screen):
         return [Physics.border_left_collision(sprite=sprite, screen=screen),
                 Physics.border_right_collision(sprite=sprite),
-                Physics.border_top_collision(sprite=sprite, screen=screen),
-                Physics.border_bottom_collision(sprite=sprite)]
+                Physics.border_top_collision(sprite=sprite),
+                Physics.border_bottom_collision(sprite=sprite, screen=screen)]
 
     @staticmethod
     def collision(all_sprite, type_="simpel"):

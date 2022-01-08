@@ -117,6 +117,21 @@ def d(r):
     return r * 2
 
 
+def arrays():
+    array: list = [1, "hallo", "bob"]
+
+    print(f"{array=}, {len(array)}, {array[0]}, {array[1]}, {array[-1]}, {array[:1]=}, {array[:1]=}")
+
+    dog_imp: list = ["legs", "tail", "namen", "rase", "wuf", "speak"]
+
+    def speak(name, sound):
+        return f"{name} make {sound}"
+
+    dog: list = [4, 1, "bella", "Bulldog", "wufii", speak]
+
+    print(dog[-1]("wAf"))  # -> dog.speak("wAf")
+
+
 class Circle:
     r = 4
 
