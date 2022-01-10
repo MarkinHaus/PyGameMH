@@ -99,16 +99,16 @@ def functional():
         Physics.collision(sprites)
 
         if Physics.border_top_collision(sprite1):
-            sprite1.my = -1
+            sprite1.my *= -1
 
         if Physics.border_bottom_collision(sprite1, screen):
-            sprite1.my = 1
+            sprite1.my *= 1
 
         if Physics.border_top_collision(sprite2):
-            sprite2.my = -1
+            sprite2.my *= -1
 
         if Physics.border_bottom_collision(sprite2, screen):
-            sprite2.my = 1
+            sprite2.my *= 1
 
         if Physics.border_top_collision(sprite3):
             sprite3.my *= -1
