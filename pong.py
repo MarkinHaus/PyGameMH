@@ -16,7 +16,7 @@ def functional():
     sprite3 = Sprite(screen, "circle")  # ball
 
     # ball starting conditions
-    sprite3.fx(4)
+    sprite3.fx(4 * random.choice([-1, 1]))
     sprite3.fy(0)
 
     # players starting conditions
@@ -120,14 +120,14 @@ def functional():
             life_pl2 -= 1
             sprite3.x = screen.width / 2
             sprite3.y = screen.height / 2
-            sprite3.fy(random.randint(-2, 2))
+            sprite3.fy(random.randint(-3, 3))
 
         if Physics.border_right_collision(sprite3):
             screen.surface.fill(sprite2.color)
             life_pl1 -= 1
             sprite3.x = screen.width / 2
             sprite3.y = screen.height / 2
-            sprite3.fy(random.randint(-2, 2))
+            sprite3.fy(random.randint(-3, 3))
 
         # t1 = time.time()
         list(map(f, sprites))
@@ -163,8 +163,9 @@ def functional():
             sprite3.set_color(random.choice(["red", "blue", "yellow", "purple", "azul", "white"]))
 
         if life_pl1 <= 0:
-            sprite1.my *= -0.25
-            sprite2.my *= -0.25
+            if life_pl1 == 0:
+                sprite1.my = -1.5
+                sprite2.my = +1.5
             text.show(f"!!!PL2 WIN!!! Starting in {abs(int(-life_pl1 * 100 / 250))}",
                       (screen.width / 2 - 100, screen.height / 2 - 50), (255, 255, 255))
             sprite3.x = screen.width / 2
@@ -175,12 +176,13 @@ def functional():
             if life_pl1 == -1:
                 life_pl1 = 3
                 life_pl2 = 3
-                sprite3.fx(random.randint(-2, 2))
-                sprite3.fy(random.randint(-2, 2))
+                sprite3.fx(random.randint(-3, 3))
+                sprite3.fy(random.randint(-3, 3))
 
         if life_pl2 <= 0:
-            sprite1.my *= -0.25
-            sprite2.my *= -0.25
+            if life_pl2 == 0:
+                sprite1.my = +1.5
+                sprite2.my = -1.5
             text.show(f"!!!PL1 WIN!!! Starting in {abs(int(-life_pl2 * 100 / 250))}",
                       (screen.width / 2 - 100, screen.height / 2 - 50), (255, 255, 255))
             sprite3.x = screen.width / 2
@@ -191,8 +193,8 @@ def functional():
             if life_pl2 == -1:
                 life_pl1 = 3
                 life_pl2 = 3
-                sprite3.fx(random.randint(-2, 2))
-                sprite3.fy(random.randint(-2, 2))
+                sprite3.fx(random.randint(-3, 3))
+                sprite3.fy(random.randint(-3, 3))
 
         # for p in cp:
         #     pygame.draw.rect(screen.surface, (255, 0, 255), (p[0], p[1], 2, 2))
