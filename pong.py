@@ -1,7 +1,6 @@
 from util.MGameM import Screen, Sprite, Text, Mouse, Physics, clock  # import custom
 import random
 import pygame
-import time
 
 
 def functional():

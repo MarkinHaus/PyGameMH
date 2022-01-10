@@ -1,7 +1,5 @@
 from util.MGameM import Screen, Sprite, Text, Mouse, Physics, clock  # import custom
-import random
 import pygame
-import time
 
 
 def functional():
@@ -65,10 +63,9 @@ def functional():
 
         screen.surface.fill(screen.background)
 
-        def f1(sprite):
-            sprite.move(dt)
-            sprite.draw_func()
-
+        def f1(sprite_):
+            sprite_.move(dt)
+            sprite_.draw_func()
 
         # using clock to cap fps
         dt = clock.tick(25) / 10
