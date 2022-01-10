@@ -6,7 +6,7 @@ import time
 
 def functional():
     # Open a Window
-    screen = Screen(width=1236, height=512, background='black')
+    screen = Screen(width=1236, height=512, background='black', title="Pong")
 
     # init Sprites blueprint
     sprites = []

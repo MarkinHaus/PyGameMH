@@ -6,7 +6,7 @@ import time
 
 def functional():
     # Open a Window
-    screen = Screen(width=862, height=674, background='black')
+    screen = Screen(width=862, height=674, background='black', title="SpacePong")
 
     # init Sprites blueprint
     player_sprites = []
@@ -113,6 +113,7 @@ def functional():
         if Physics.border_bottom_collision(ball, screen):
             ball.x = screen.width / 2
             ball.y = screen.height / 2 - 200
+            player.mx = 0
 
         if bool(ball.collision_list):
             if ball.collision_list[0][0] == player:
@@ -145,6 +146,7 @@ def functional():
         if len(sprites) <= 0:
             text.show(f"END {points}", (20 - 150, 30), (255, 255, 255))
             pygame.time.wait(1000)
+            sprites = list(map(helper_1, em_sprites))
 
         # for p in cp:
         #     pygame.draw.rect(screen.surface, (255, 0, 255), (p[0], p[1], 2, 2))

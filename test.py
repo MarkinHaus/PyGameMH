@@ -1,12 +1,15 @@
 import pygame
 import random
 from util.MGameM import Screen, Sprite, Text, Mouse, Background, clock, Physics
+import sys
 
 if __name__ == '__main__':
 
+    print('Python %s on %s' % (sys.version, sys.platform))
+
     # Ein Fenster öffnen
 
-    screen = Screen(width=1650, height=720, background='black')
+    screen = Screen(width=1650, height=720, background='black', title=">Test<")
 
     # init test Background
 
