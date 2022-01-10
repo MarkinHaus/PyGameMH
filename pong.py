@@ -4,7 +4,7 @@ import pygame
 
 
 def functional():
-    # Open a Window
+    # Open a Window -
     screen = Screen(width=1236, height=512, background='black', title="Pong")
 
     # init Sprites blueprint
