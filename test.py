@@ -226,12 +226,13 @@ def st():
     text = Text(screen)
 
     # main loop
-    fps = 50
+    fps = 25
+    turns = 1000
     fs = ""
     dt_l = []
-    for i in range(1000):
+    for i in range(turns):
         dt = clock.tick(fps) / 10
-        p = i * 100 / 1000
+        p = i * 100 / turns
         if p > 0.5:
             dt_l.append(dt)
 
@@ -320,7 +321,7 @@ def st():
     print(fs)
     dt_l = dt_l[:3]
     print(f"Done 2 : Performance withe FPS {fps}, {max(dt_l) - average(dt_l):.3f}, max = {max(dt_l):.2f},"
-          f" avg = {average(dt_l):.2f}")
+          f" avg = {average(dt_l):.2f} \nwonted fps = {fps} achieved fps {turns/(time.time() - t1)} of by {fps - turns/(time.time() - t1)}")
     pygame.quit()
 
 
