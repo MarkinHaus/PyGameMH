@@ -321,7 +321,8 @@ def st():
     print(fs)
     dt_l = dt_l[:3]
     print(f"Done 2 : Performance withe FPS {fps}, {max(dt_l) - average(dt_l):.3f}, max = {max(dt_l):.2f},"
-          f" avg = {average(dt_l):.2f} \nwonted fps = {fps} achieved fps {turns/(time.time() - t1)} of by {fps - turns/(time.time() - t1)}")
+          f" avg = {average(dt_l):.2f} \nWonted fps : {fps} \nAchieved fps : {turns/(time.time() - t1)} \nOf by : "
+          f"{fps - turns/(time.time() - t1)}")
     pygame.quit()
 
 
