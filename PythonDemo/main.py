@@ -25,7 +25,6 @@ def main():
     print(type(tuple_), "tuple_")
     print(type(list_), "list_")
 
-
     # logic operators
 
     # False = 0
@@ -132,8 +131,21 @@ def arrays():
     print(dog[-1]("wAf"))  # -> dog.speak("wAf")
 
 
+def level2():
+    def helper_1(x: int) -> int:
+        return x * 2
+
+    halper_2 = lambda x: x * 2
+
+    print(2 * 2, helper_1(2), halper_2(2))
+
+    print(map(helper_1, [1, 2, 3, 4, 5, 6, 7]))
+
+    print(list(map(halper_2, [1, 2, 3, 4, 5, 6, 7])))
+
+
 class Circle:
-    r = 4
+    radius = 4
 
     def __init__(self, name, x, y):
         self.name = name
@@ -141,10 +153,10 @@ class Circle:
         self.y = y
 
     def d(self):
-        return d(self.r)
+        return d(self.radius)
 
-    def set_r(self, r):
-        self.r = r
+    def set_r(self, radius):
+        self.radius = radius
 
 
 class MyClass(Circle):
@@ -153,14 +165,14 @@ class MyClass(Circle):
         super().__init__(name, x, y)
 
     def a(self):
-        return (pi * self.r) ** 2  # ADD build in function
+        return (pi * self.radius) ** 2  # ADD build in function
 
 
 if __name__ == '__main__':
     print("Hello, World!")
     print("Universe!")
 
-    main()
+    level2()
 """
     k = 2  # Circle
     kx = 2  #
