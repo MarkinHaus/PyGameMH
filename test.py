@@ -67,7 +67,7 @@ if __name__ == '__main__':
     # main loop
     step = "0"
     coll_count = 0
-    fps = 60
+    fps = 50
     fs = ""
     dt_l = []
     for i in range(1000):
@@ -75,7 +75,7 @@ if __name__ == '__main__':
         p = i * 100 / 1000
         if p > 0.5:
             dt_l.append(dt)
-        print(f"{p}% step {step} | 3 dt: {dt} ")
+        #print(f"{p}% step {step} | 3 dt: {dt} ")
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -162,22 +162,7 @@ if __name__ == '__main__':
         pygame.display.update()
 
     print(fs)
+    dt_l = dt_l[:3]
     print(f"Done 2 : Performance withe FPS {fps}, {max(dt_l) - average(dt_l):.3f}, max = {max(dt_l):.2f},"
           f" avg = {average(dt_l):.2f}")
     pygame.quit()
-
-
-"""
-# i7-6800k GTX 1080
-Done 1 Performance withe FPS 600, 1.100, max = 2.30, avg = 1.20,
-Done 2 Performance withe FPS 600, 2.629, max = 4.10, avg = 1.47
-
-Done 1 : Performance withe FPS 60, 1.198, max = 2.90, avg = 1.70,
-Done 2 : Performance withe FPS 60, 1.396, max = 3.10, avg = 1.70
-
-Done 1 : Performance withe FPS 25, 0.049, max = 4.10, avg = 4.05,
-Done 2 : Performance withe FPS 25, 0.050, max = 4.10, avg = 4.05
-
-Done 1 : Performance withe FPS 60, 7.580, max = 10.10, avg = 2.52,
-Done 2 : Performance withe FPS 60, 11.107, max = 14.40, avg = 3.29
-"""
