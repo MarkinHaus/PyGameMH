@@ -1,5 +1,5 @@
 import unittest
-from MGameM import Sprite, Screen
+from util.MGameM import Sprite, Screen
 import random
 
 
