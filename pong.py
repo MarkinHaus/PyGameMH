@@ -102,13 +102,14 @@ def functional():
             sprite1.my *= -1
 
         if Physics.border_bottom_collision(sprite1, screen):
-            sprite1.my *= 1
+            print("IN")
+            sprite1.my *= -1
 
         if Physics.border_top_collision(sprite2):
             sprite2.my *= -1
 
         if Physics.border_bottom_collision(sprite2, screen):
-            sprite2.my *= 1
+            sprite2.my *= -1
 
         if Physics.border_top_collision(sprite3):
             sprite3.my *= -1
@@ -164,6 +165,8 @@ def functional():
             sprite3.set_color(random.choice(["red", "blue", "yellow", "purple", "azul", "white"]))
 
         if life_pl1 <= 0:
+            sprite1.my *= -0.25
+            sprite2.my *= -0.25
             text.show(f"!!!PL2 WIN!!! Starting in {abs(int(-life_pl1 * 100 / 250))}",
                       (screen.width / 2 - 100, screen.height / 2 - 50), (255, 255, 255))
             sprite3.x = screen.width / 2
@@ -178,6 +181,8 @@ def functional():
                 sprite3.fy(random.randint(-2, 2))
 
         if life_pl2 <= 0:
+            sprite1.my *= -0.25
+            sprite2.my *= -0.25
             text.show(f"!!!PL1 WIN!!! Starting in {abs(int(-life_pl2 * 100 / 250))}",
                       (screen.width / 2 - 100, screen.height / 2 - 50), (255, 255, 255))
             sprite3.x = screen.width / 2

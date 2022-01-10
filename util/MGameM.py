@@ -75,10 +75,10 @@ class Sprite:
         self.rect = pygame.Rect((self.x, self.y, self.width, self.height))
         # self.rect.move_ip(int(self.x), int(self.y))
 
-    def fx(self, x: int):
+    def fx(self, x: float):
         self.mx = x
 
-    def fy(self, y: int):
+    def fy(self, y: float):
         self.my = y
 
     def add_col_sprite(self, sprite, point: list):
@@ -153,8 +153,8 @@ class Sprite:
                     # compute_dist
                     g = list(map(lambda x: sqrt((self.x - x[0]) ** 2 +
                                                 (self.y - x[1]) ** 2), outline_rect))
-                    for p in outline_rect:
-                        pygame.draw.rect(self.screen.surface, (255, 0, 255), (p[0], p[1], 2, 2))
+                    # for p in outline_rect:
+                    #     pygame.draw.rect(self.screen.surface, (255, 0, 255), (p[0], p[1], 2, 2))
 
                     if min(g) <= self.radius:
                         self.add_col_sprite(sprite, outline_rect[g.index(min(g))])
