@@ -102,7 +102,6 @@ def functional():
             sprite1.my *= -1
 
         if Physics.border_bottom_collision(sprite1, screen):
-            print("IN")
             sprite1.my *= -1
 
         if Physics.border_top_collision(sprite2):
