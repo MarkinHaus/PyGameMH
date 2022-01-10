@@ -40,7 +40,7 @@ def functional():
 
     # init Text
     text = Text(screen)
-    # text.init_font()
+    text.init_font()
 
     # init Mouse
     mouse = Mouse(screen, None)
