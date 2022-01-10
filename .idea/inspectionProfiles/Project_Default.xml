@@ -6,7 +6,6 @@
         <list>
           <option value="int.__getitem__" />
           <option value="bool.__getitem__" />
-          <option value="simple.lux.game_map.Cell.__getitem__" />
         </list>
       </option>
     </inspection_tool>
