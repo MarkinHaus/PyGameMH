@@ -173,8 +173,7 @@ def live():
     pygame.quit()
 
 
-def st():
-    print('Python %s on %s' % (sys.version, sys.platform))
+def st(cap=True):
 
     # Open a Window
 
@@ -231,7 +230,7 @@ def st():
     fs = ""
     dt_l = []
     for i in range(turns):
-        dt = clock.tick(fps) / 10
+        dt = clock.tick(fps) / 10 if cap else 1
         p = i * 100 / turns
         if p > 0.5:
             dt_l.append(dt)
@@ -318,18 +317,28 @@ def st():
         mouse.show_m(False)
         pygame.display.update()
 
-    print(fs)
     dt_l = dt_l[:3]
-    print(f"Done 2 : Performance withe FPS {fps}, {max(dt_l) - average(dt_l):.3f}, max = {max(dt_l):.2f},"
-          f" avg = {average(dt_l):.2f} \nWonted fps : {fps} \nAchieved fps : {turns/(time.time() - t1)} \nOf by : "
-          f"{fps - turns/(time.time() - t1)}")
+    if cap:
+        print(fs)
+        print(f"Done 2 : Performance withe FPS {fps}, {max(dt_l) - average(dt_l):.3f}, max = {max(dt_l):.2f},"
+              f" avg = {average(dt_l):.2f} \nfps cap : {fps} \nAchieved fps : {turns/(time.time() - t1)} \nof by : "
+              f"{fps - turns/(time.time() - t1)}")
+    else:
+        print("\n")
+        print(f"max fps : {turns/(time.time() - t1)}")
     pygame.quit()
 
 
 if __name__ == '__main__':
 
+    print('Python %s on %s \n' % (sys.version, sys.platform))
+
     t1 = time.time()
     st()
+    print(f"time {time.time() - t1}")
+
+    t1 = time.time()
+    st(False)
     print(f"time {time.time() - t1}")
 
     exit(0)
