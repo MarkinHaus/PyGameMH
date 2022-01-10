@@ -1,5 +1,4 @@
 import pygame
-
 from util.Color import name_to_list
 from math import sqrt
 
@@ -37,6 +36,9 @@ class Sprite:
         self.color = color
         if type(color) == str:
             self.color = name_to_list(color)
+
+    def reset_coll_list(self):
+        self.collision_list = []
 
     def make_sprite(self, type_: str, collisions_level: int, width: float = 0, height: float = 0, radius: float = 0,
                     color: str or list or None = None, file: str or None = None, img_size: int = 1) -> None:
@@ -111,6 +113,9 @@ class Sprite:
             self.draw_func = draw_func
         if not self.collision_func:
             self.collision_func = collision_func
+
+    def speed_0alpha_img(self):
+        self.img = self.img.convert()
 
     def img_(self):
 
@@ -321,7 +326,6 @@ class Design:
 #
 #        pass
 
-
 class Physics:
     @staticmethod
     def border_left_collision(sprite: Sprite, screen: Screen):
@@ -353,11 +357,10 @@ class Physics:
     @staticmethod
     def collision(all_sprite, type_="simpel"):
         if type_ == "simpel":
-            for sprite in all_sprite:
-                sprite.collision_list = []
-                for sprite_ in all_sprite:
-                    if sprite != sprite_:
-                        sprite.collision_func(sprite_)
+
+            list(map(lambda sprite: sprite.reset_coll_list(), all_sprite))
+            list(map(lambda sprite: list(map(lambda sprite_: sprite.collision_func(sprite_), all_sprite)), all_sprite))
+
         else:
             raise NotImplementedError
 

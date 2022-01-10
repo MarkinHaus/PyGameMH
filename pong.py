@@ -40,6 +40,7 @@ def functional():
 
     # init Text
     text = Text(screen)
+    # text.init_font()
 
     # init Mouse
     mouse = Mouse(screen, None)
@@ -146,6 +147,7 @@ def functional():
 
         if bool(sprite3.collision_list):
             if sprite3.collision_list[0][0] == sprite2:
+                # Live sprite3.reset_coll_list()
                 sprite3.x = sprite2.x - (game_pad_width + of_x + 1)
                 sprite3.fy(sprite2.my * (4 - life_pl2) / 2)
                 sprite3.mx *= -1
@@ -155,6 +157,7 @@ def functional():
 
         if bool(sprite3.collision_list):
             if sprite3.collision_list[0][0] == sprite1:
+                # Live sprite3.reset_coll_list()
                 sprite3.x = sprite1.x + (game_pad_width + of_x + 1)
                 sprite3.fy(sprite1.my * (4 - life_pl1) / 2)
                 sprite3.mx *= -1
