@@ -26,6 +26,10 @@ class Sprite:
         self.img: pygame.image = None
         self.rect: pygame.Rect = pygame.Rect(0, 0, 0, 0)
 
+        self.sprite_sheet_info = {}
+        self.color_key = (0, 0, 0)
+        self.full_sheet_img = None
+
         self.file: str = ""
         self.img_size: int = 1
         self.radius: float = 0
@@ -39,7 +43,8 @@ class Sprite:
             self.color = name_to_list(color)
 
     def make_sprite(self, type_: str, collisions_level: int, width: float = 0, height: float = 0, radius: float = 0,
-                    color: str or list or None = None, file: str or None = None, img_size: int = 1) -> None:
+                    color: str or list or None = None, file: str or None = None, img_size: int = 1, sheet: dict = None,
+                    name="default") -> None:
         self.set_color(color)
         if not self.type_:
             self.type_ = type_
@@ -52,6 +57,8 @@ class Sprite:
 
         if type_ == "img":
             self.img_()
+        if type_ == "sheet":
+            self.img_(sheet, name)
         if type_ == "rect":
             self.rect_()
         if type_ == "circle":
@@ -112,9 +119,18 @@ class Sprite:
         if not self.collision_func:
             self.collision_func = collision_func
 
-    def img_(self):
+    def set_new_sheet_img(self, name, anker=(0, 0)):
+        sprite = pygame.Surface((self.width, self.height))
+        sprite.set_colorkey(self.color_key)
+        sprite.blit(self.full_sheet_img, anker, self.sprite_sheet_info[name])
+
+    def img_(self, sheet: dict = None, name="default"):
 
         self.img = pygame.image.load(str(self.file)).convert_alpha()
+
+        if sheet:
+            self.full_sheet_img = pygame.image.load(str(self.file)).convert_alpha()
+            self.set_new_sheet_img(name=name)
 
         if not self.width:
             self.width = self.img.get_width()
