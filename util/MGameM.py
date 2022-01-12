@@ -19,10 +19,11 @@ class Sprite:
 
         self.collisions_level: int = 0
         self.collision_list: list = []
-        self.color: tuple = (0, 0, 0)
-        self.border_offset: int = 5
-        self.draw_func = None
+
         self.collision_func = None
+        self.draw_func = None
+
+        self.color: tuple = (0, 0, 0)
         self.img: pygame.image = None
         self.rect: pygame.Rect = pygame.Rect(0, 0, 0, 0)
 
@@ -32,6 +33,7 @@ class Sprite:
 
         self.file: str = ""
         self.img_size: int = 1
+
         self.radius: float = 0
 
     def __str__(self):
@@ -43,8 +45,8 @@ class Sprite:
             self.color = name_to_list(color)
 
     def make_sprite(self, type_: str, collisions_level: int, width: float = 0, height: float = 0, radius: float = 0,
-                    color: str or list or None = None, file: str or None = None, img_size: int = 1, sheet: dict = None,
-                    name="default") -> None:
+                    color: str or list or None = None, file: str or None = None, img_size: int = 1,
+                    sheet_data: dict = None, name="default") -> None:
         self.set_color(color)
         if not self.type_:
             self.type_ = type_
@@ -58,7 +60,7 @@ class Sprite:
         if type_ == "img":
             self.img_()
         if type_ == "sheet":
-            self.img_(sheet, name)
+            self.img_(sheet_data, name)
         if type_ == "rect":
             self.rect_()
         if type_ == "circle":
@@ -119,18 +121,27 @@ class Sprite:
         if not self.collision_func:
             self.collision_func = collision_func
 
-    def set_new_sheet_img(self, name, anker=(0, 0)):
+    def set_new_sheet_img(self, name, anker=(0, 0), img_size=1):
+        _, _, self.width, self.height = self.sprite_sheet_info[name]
         sprite = pygame.Surface((self.width, self.height))
         sprite.set_colorkey(self.color_key)
         sprite.blit(self.full_sheet_img, anker, self.sprite_sheet_info[name])
+        if img_size != 1:
+            self.width, self.height = self.width*img_size, self.height*img_size
+            return pygame.transform.scale(sprite, (self.width, self.height))
+        return sprite
+
+    def rotate(self, angel):
+        self.img = pygame.transform.rotate(self.img, angel)
 
     def img_(self, sheet: dict = None, name="default"):
 
         self.img = pygame.image.load(str(self.file)).convert_alpha()
 
         if sheet:
+            self.sprite_sheet_info = sheet
             self.full_sheet_img = pygame.image.load(str(self.file)).convert_alpha()
-            self.set_new_sheet_img(name=name)
+            self.img = self.set_new_sheet_img(name=name)
 
         if not self.width:
             self.width = self.img.get_width()
@@ -139,7 +150,8 @@ class Sprite:
             self.height = self.img.get_height()
 
         if self.img_size != 1:
-            self.img = pygame.transform.scale(self.img, self.img_size)
+            self.width, self.height = self.width*self.img_size, self.height*self.img_size
+            self.img = pygame.transform.scale(self.img, (self.width, self.height))
 
         def draw_func():
             self.screen.surface.blit(self.img, (self.x, self.y))

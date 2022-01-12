@@ -348,4 +348,32 @@ if __name__ == '__main__':
 Done 1 : Performance withe FPS 50, 0.057, max = 2.10, avg = 2.04,
 Done 2 : Performance withe FPS 50, 0.000, max = 2.10, avg = 2.10
 time 20.69895911216736
+
+
+Done 1 : Performance withe FPS 25, 0.053, max = 4.10, avg = 4.05,
+Done 2 : Performance withe FPS 25, 0.000, max = 4.10, avg = 4.10 
+fps cap : 25 
+Achieved fps : 24.535677243772177 
+of by : 0.4643227562278227
+time 40.83750057220459
+
+
+max fps : 223.82922160998285
+time 4.519689083099365
+
+
+libpng warning: iCCP: known incorrect sRGB profile
+libpng warning: iCCP: known incorrect sRGB profile
+Done 1 : Performance withe FPS 25, 9.718, max = 13.80, avg = 4.08,
+Done 2 : Performance withe FPS 25, 0.133, max = 4.20, avg = 4.07 
+fps cap : 25 
+Achieved fps : 24.164071718536967 
+of by : 0.8359316225786877
+time 41.41173505783081
+libpng warning: iCCP: known incorrect sRGB profile
+libpng warning: iCCP: known incorrect sRGB profile
+
+
+max fps : 31.62380955806132
+time 31.668455123901367
 """
