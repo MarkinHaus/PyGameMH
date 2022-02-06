@@ -1,47 +1,57 @@
+import math
+
 import pygame
 import random
-from util.MGameM import Screen, Sprite, Text, Mouse, Background, clock, Physics
+from util.MGameM import Screen, Sprite, Text, Mouse, Map, clock, space, Animation
 import time
 import sys
-import cProfile, pstats, io
-
-
-def profile(fnc):
-    def inner(*args, **kwargs):
-        pr = cProfile.Profile()
-        pr.enable()
-        retval = fnc(*args, **kwargs)
-        pr.disable()
-        s = io.StringIO()
-        sortby = 'cumulative'
-        ps = pstats.Stats(pr, stream=s).sort_stats(sortby)
-        ps.print_stats()
-        print(s.getvalue()[:2000])
-        return retval
-
-    return inner
 
 
 def average(dt_l_):
     return sum(dt_l_) / len(dt_l_)
 
 
-@profile
-def live():
-    print('Python %s on %s' % (sys.version, sys.platform))
-
+def live(cap=True):
     # Open a Window
 
-    screen = Screen(width=1650, height=720, background='black', title=">Test<")
+    screen = Screen(width=1650, height=720, title=">Test<")
 
     # init test Background
 
-    background = Background(screen, "img/testBG.png", wh=(1280, 720))
-
+    background_map = Map(screen, "statick", color=(155, 5, 155))  # statick statick-img dynamic-img
+    background_map.load_dynamic_img("img1", "img/testBG.png", (200, 0))
     # init test Mouse
 
     mouse = Mouse(screen, None)  # ["img/testMG1.png", "img/testMG1.png"])
     sprites = []
+    sprite_sheet_data = {
+        "0": (0, 0, 49, 49),
+        "1": (50, 0, 49, 49),
+        "2": (100, 0, 49, 49),
+        "3": (150, 0, 49, 49),
+        "4": (200, 0, 49, 49),
+    }
+
+    sprite_sheet_data2 = {
+        "0": (0, 50, 49, 49),
+        "1": (50, 50, 49, 49),
+        "2": (100, 50, 49, 49),
+        "3": (150, 50, 49, 49),
+        "4": (200, 50, 49, 49),
+    }
+    alim1 = Animation(screen=screen, name="test", file="img/testAlim1.png", sprite_sheet_info=sprite_sheet_data,
+                      color_key=(255, 255, 255))
+
+    alim1.make_new_animation("a2", sprite_sheet_data2, size=4)
+
+    alim1.make_new_animation("a1", sprite_sheet_data, size=4)
+    alim1.debug_img_rot_draw = True
+    alim1.load_animation("a1")
+    alim1.make_sprite("img", elasticity=1,
+                      position=(600, 400), physics=True, velocity=(20, 10),
+                      file=alim1.stos[alim1.ac_alim][0][1])
+
+    alim1.add_to_space(space)
 
     # init test Sprites
 
@@ -50,33 +60,34 @@ def live():
     sprite3 = Sprite(screen, "sprite3")  # rect
     sprite4 = Sprite(screen, "sprite4")  # img
 
-    sprite1.fx(random.randint(-6, 6))
-    sprite1.fy(random.randint(-6, 6))
+    sprite1.make_sprite("rect", width=80, height=80, elasticity=1,
+                        position=(random.randint(60, 720), random.randint(60, 720)), color="Blue", physics=True,
+                        velocity=(random.randint(-100, 100), random.randint(-100, 100)))
+    sprite2.make_sprite("rect", width=80, height=80, elasticity=1,
+                        position=(random.randint(60, 720), random.randint(60, 720)), color="Red", physics=True,
+                        velocity=(random.randint(-100, 100), random.randint(-100, 100)))
+    sprite3.make_sprite("circle", radius=20, elasticity=1, position=(random.randint(60, 720), random.randint(60, 720)),
+                        color="Green", physics=True, velocity=(random.randint(-100, 100), random.randint(-100, 100)))
+    sprite4.make_sprite("img", elasticity=1,
+                        position=(400, 400), physics=True, velocity=(20, 10),
+                        file="img/testIB.png")
 
-    sprite2.fx(random.randint(-6, 6))
-    sprite2.fy(random.randint(-6, 6))
+    sprite1.add_to_space(space)
+    sprite2.add_to_space(space)
+    sprite3.add_to_space(space)
+    sprite4.add_to_space(space)
 
-    sprite3.fx(random.randint(-6, 6))
-    sprite3.fy(random.randint(-6, 6))
+    points = [(25, 25), (25, screen.height - 25), (screen.width - 25, screen.height - 25), (screen.width - 25, 25)]
+    border = Sprite(screen, "border_l").make_sprite(type_="box", width=5, aa_lines_list=points,
+                                                    collisions_for_sep_aa_line=(2, 4, 3, 4), is_closed=True
+                                                    # color_for_aa_line=((255, 255, 0),(255, 0, 255),(255, 0, 0),
+                                                    # (255, 0, 0))
+                                                    , color="white", elasticity=1,
+                                                    physics=False)  # line
 
-    sprite4.fx(random.randint(-6, 6))
-    sprite4.fy(random.randint(-6, 6))
+    border.add_to_space(space)
 
-    sprite1.x = random.randint(6, 720)
-    sprite1.y = random.randint(6, 720)
-    sprite2.x = random.randint(6, 720)
-    sprite2.y = random.randint(6, 720)
-    sprite3.x = random.randint(6, 720)
-    sprite3.y = random.randint(6, 720)
-    sprite4.x = random.randint(6, 720)
-    sprite4.y = random.randint(6, 720)
-
-    sprite1.make_sprite("rect", -1, 80, 80, color="Blue")
-    sprite2.make_sprite("rect", 1, 80, 80, color="Red")
-    sprite3.make_sprite("circle", 1, radius=10, color="Green")
-    sprite4.make_sprite("img", 1, 203, 46, file="img/testIB.png")
-
-    sprites += [sprite1, sprite2, sprite3, sprite4]
+    sprites += [sprite1, sprite2, sprite3, sprite4, border]
 
     # init test Text:
 
@@ -84,18 +95,25 @@ def live():
     text.init_font(20)
     # main loop
     coll_count = 0
-    fps = 10
+    turns = 5000
+    fps = 50
     fs = ""
     dt_l = []
-    for i in range(500):
-        p = i * 100 / 500
+
+    for i in range(turns):
+        dt = clock.tick(fps) if cap else 0.8
+        # print(dt)
+        space.step(1 / dt)
+        p = i * 100 / turns
         # print(f"{p}% step {step} | 3 dt: {dt} ")
+        if p > 0.5:
+            dt_l.append(dt)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
 
-        screen.surface.fill(screen.background)
+        background_map.draw()
 
         if p > 0:
             if p % 5 == 0 and p < 20:
@@ -132,187 +150,24 @@ def live():
                 move_y = False
                 speed_x = 150
                 speed_y = 150
-            background.show(move_x=move_x, speed_x=speed_x, move_y=move_y, speed_y=speed_y)
+            # background.show()  # move_x=move_x, speed_x=speed_x, move_y=move_y, speed_y=speed_y)
             if p < 50:
                 text.show(f"Testing background {i * 100 / 500}%", (screen.width / 2, 45),
                           (255, int(255 % i / 255), 255))
 
         if p > 50:
             step = f"testing sprite 3"
-
-            Physics.collision(sprites)
-
-            def f(sprite):
-                sprite.move(1)
-                sprite.draw_func()
-
-                if Physics.border_left_collision(sprite, screen):
-                    sprite.mx *= -1
-
-                if Physics.border_right_collision(sprite):
-                    sprite.mx *= -1
-
-                if Physics.border_top_collision(sprite):
-                    sprite.my *= -1
-
-                if Physics.border_bottom_collision(sprite, screen):
-                    sprite.my *= -1
-
-                if sprite.collision_list:
-                    sprite4.x = random.randint(6, 720)
-                    sprite4.y = random.randint(6, 720)
-                    sprite.set_color(
-                        random.choice(["black", "red", "green", "blue", "yellow", "purple", "azul", "white"]))
-
-            list(map(f, sprites))
-
             text.show(f"Testing sprite collision {p}%", (0, 80), (255, 255, 255))
 
-        mouse.show_m(False)
-        pygame.display.update()
-    pygame.quit()
+        # background.show()
 
+        def f(sprite):
+            sprite.draw_func()
 
-def st(cap=True):
+        list(map(f, sprites))
 
-    # Open a Window
-
-    screen = Screen(width=1650, height=720, background='black', title=">Test<")
-
-    # init test Background
-
-    background = Background(screen, "img/testBG.png", wh=(1280, 720))
-
-    # init test Mouse
-
-    mouse = Mouse(screen, None)  # ["img/testMG1.png", "img/testMG1.png"])
-    sprites = []
-
-    # init test Sprites
-
-    sprite1 = Sprite(screen, "sprite1")  # rect
-    sprite2 = Sprite(screen, "sprite2")  # rect
-    sprite3 = Sprite(screen, "sprite3")  # rect
-    sprite4 = Sprite(screen, "sprite4")  # img
-
-    sprite1.fx(random.randint(-6, 6))
-    sprite1.fy(random.randint(-6, 6))
-    sprite2.fx(random.randint(-6, 6))
-    sprite2.fy(random.randint(-6, 6))
-    sprite3.fx(random.randint(-6, 6))
-    sprite3.fy(random.randint(-6, 6))
-    sprite4.fx(random.randint(-6, 6))
-    sprite4.fy(random.randint(-6, 6))
-
-    sprite1.x = random.randint(6, 720)
-    sprite1.y = random.randint(6, 720)
-    sprite2.x = random.randint(6, 720)
-    sprite2.y = random.randint(6, 720)
-    sprite3.x = random.randint(6, 720)
-    sprite3.y = random.randint(6, 720)
-    sprite4.x = random.randint(6, 720)
-    sprite4.y = random.randint(6, 720)
-
-    sprite1.make_sprite("rect", -1, 80, 80, color="Blue")
-    sprite2.make_sprite("rect", 1, 80, 80, color="Red")
-    sprite3.make_sprite("circle", 1, radius=10, color="Green")
-    sprite4.make_sprite("img", 1, 203, 46, file="img/testIB.png")
-
-    sprites += [sprite1, sprite2, sprite3, sprite4]
-
-    # init test Text:
-
-    text = Text(screen)
-
-    # main loop
-    fps = 25
-    turns = 1000
-    fs = ""
-    dt_l = []
-    for i in range(turns):
-        dt = clock.tick(fps) / 10 if cap else 1
-        p = i * 100 / turns
-        if p > 0.5:
-            dt_l.append(dt)
-
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-
-        screen.surface.fill(screen.background)
-
-        if p > 0:
-            if p < 10:
-                text.init_font(i)
-            text.show(f"TeStInG ´tEx*t {p}%", (screen.width / 2 - 200, screen.height / 2), (255, 255, 255))
-
-        if p > 10:
-            move_x = False
-            move_y = False
-            speed_x = 15
-            speed_y = 15
-            if p > 15:
-                move_x = True
-                move_y = False
-                speed_x = 15
-                speed_y = 15
-            if p > 20:
-                move_x = True
-                move_y = False
-                speed_x = - 15
-                speed_y = 15
-            if p > 30:
-                move_x = False
-                move_y = True
-                speed_x = 15
-                speed_y = -15
-            if p > 35:
-                move_x = False
-                move_y = True
-                speed_x = 15
-                speed_y = 15
-            if p > 40:
-                move_x = False
-                move_y = False
-                speed_x = 15
-                speed_y = 15
-            background.show(move_x=move_x, speed_x=speed_x, move_y=move_y, speed_y=speed_y)
-            if p < 50:
-                text.show(f"Testing background {i * 100 / 500}%", (screen.width / 2, 45),
-                          (255, int(255 % i / 255), 255))
-
-                fs = f"Done 1 : Performance withe FPS {fps}, {max(dt_l) - average(dt_l):.3f}, max = {max(dt_l):.2f}," \
-                     f" avg = {average(dt_l):.2f},"
-        if p > 50:
-            step = f"testing sprite 3"
-
-            Physics.collision(sprites)
-
-            def f(sprite):
-                sprite.move(dt)
-                sprite.draw_func()
-
-                if Physics.border_left_collision(sprite, screen):
-                    sprite.mx *= -1
-
-                if Physics.border_right_collision(sprite):
-                    sprite.mx *= -1
-
-                if Physics.border_top_collision(sprite):
-                    sprite.my *= -1
-
-                if Physics.border_bottom_collision(sprite, screen):
-                    sprite.my *= -1
-
-                if sprite.collision_list:
-                    sprite4.x = random.randint(6, 720)
-                    sprite4.y = random.randint(6, 720)
-                    sprite.set_color(
-                        random.choice(["black", "red", "green", "blue", "yellow", "purple", "azul", "white"]))
-
-            list(map(f, sprites))
-
-            text.show(f"Testing sprite collision {p}%", (0, 80), (255, 255, 255))
+        alim1.next_step(fps)
+        alim1.draw_func()
 
         mouse.show_m(False)
         pygame.display.update()
@@ -320,29 +175,26 @@ def st(cap=True):
     dt_l = dt_l[:3]
     if cap:
         print(fs)
-        print(f"Done 2 : Performance withe FPS {fps}, {max(dt_l) - average(dt_l):.3f}, max = {max(dt_l):.2f},"
-              f" avg = {average(dt_l):.2f} \nfps cap : {fps} \nAchieved fps : {turns/(time.time() - t1)} \nof by : "
-              f"{fps - turns/(time.time() - t1)}")
+        print(f"Done : Performance"
+              f" avg = {average(dt_l):.2f} \nfps cap : {fps} \nAchieved fps : {turns / (time.time() - t1)} \nof by : "
+              f"{fps - turns / (time.time() - t1)}")
     else:
         print("\n")
-        print(f"max fps : {turns/(time.time() - t1)}")
-    pygame.quit()
+        print(f"max fps : {turns / (time.time() - t1)}")
 
 
 if __name__ == '__main__':
-
     print('Python %s on %s \n' % (sys.version, sys.platform))
 
     t1 = time.time()
-    st()
+    live()
     print(f"time {time.time() - t1}")
 
-    t1 = time.time()
-    st(False)
-    print(f"time {time.time() - t1}")
+    # t1 = time.time()
+    # live(False)
+    # print(f"time {time.time() - t1}")
 
     exit(0)
-
 
 """
 Done 1 : Performance withe FPS 50, 0.057, max = 2.10, avg = 2.04,

@@ -1,190 +1,77 @@
-from math import pi
+from util.MGameM import Screen, Sprite, Text, Mouse, clock, space, Map
+import random
+import pygame
 
 
-def main():
-    # variable
+def functional():
+    # Open a Window -
+    screen = Screen(width=1236, height=512, title="Pong")
 
-    # integer = 1  # int
-    # string = "hello"  # str
-    # float_ = 0.1
-    # bool_ = False  # True
-    # tuple_ = (0, 1, "23", False)
-    # list_ = [1, 2, 0.5, False, "4"]
+    background_map = Map(screen, "statick", color=(0, 0, 0))  # statick statick-img dynamic-img
 
-    integer: int = 1  # int
-    string: str = "hello"  # str
-    float_: float = 0.1
-    bool_: bool = False  # True
-    tuple_: tuple = (0, 1, "23", False)
-    list_: list = [1, 2, 0.5, False, "4"]
+    # -------------------ball----------------#
+    ball = Sprite(screen, "ball")  # ball
+    ball.make_sprite(type_="circle", radius=10, color="white", collisions_level=1,
+                     position=(screen.width, screen.height / 2),
+                     velocity=(-240, 40),
+                     mass=10,
+                     moment=10,
+                     elasticity=1, physics=True)
 
-    print(type(integer), "integer")
-    print(type(string), "string")
-    print(type(float_), "float_")
-    print(type(bool_), "bool_")
-    print(type(tuple_), "tuple_")
-    print(type(list_), "list_")
+    # -------------------init Text----------------#
+    text = Text(screen)
+    text.init_font()
 
-    # logic operators
+    # -------------------init Mouse----------------#
+    mouse = Mouse(screen, None)
 
-    # False = 0
-    # True = 1
-    print(not True)  # -> False
-    print(not False)  # -> True
-    print(False and False)  # -> False
-    print(False & False)  # -> False
+    # -------------------make sprite array----------------#
+    sprites = [ball]  # _l, border_r, border_t, border_b]
 
-    print(False or False)  # -> False
-    print(False | False)  # -> False
+    # -------------------ADDING OBJECTS IN TO WORLD----------------#
 
-    print(False and True)  # -> False
-    print(False & True)  # -> False
+    ball.add_to_space(space)
 
-    print(False or True)  # -> True
-    print(False | True)  # -> True
+    # list(
+    #    map(
+    #        lambda sprite_: sprite_.add_to_space(space)
+    #        , sprites
+    #    )
+    # )
+    # lambda sprite: sprite.add_to_space(space) -> def _lambda_(sprite): sprite.add_to_space(space)
 
-    print(True and True)  # -> True
-    print(True & True)  # -> True
+    fps = 25
+    run = True
 
-    print(True or True)  # -> True
-    print(True | True)  # -> True
+    while run:
+        background_map.draw()
 
-    print(not True or not True)  # -> False
+        # -------------------starting event loop----------------#
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                run = False
+                pygame.quit()
+                exit(0)
+        # -------------------print score----------------#
+        text.show(f"TEXT", (screen.width - 180, 60), (255, 255, 255))
 
-    # comparison
+        # -------------------drawing sprites to screen---------------#
 
-    print(1 > 1)  # ->False
-    print(1 >= 1)  # ->True
-    print(1 <= 1)  # ->True
-    print(1 <= 1)  # ->True
-    print(1 != 1)  # ->False
-    print(1 != 0)  # ->True
+        # list(map(lambda sprite_: sprite_.draw_func(), sprites))
 
-    if 5 > 2:
-        print("Five is greater than two!")
+        ball.draw_func()
+        mouse.show_m(False)
 
-    i = 1
+        # -------------------using clock to cap fps and space.step to run physics----------------#
+        space.step(1 / fps)
+        clock.tick(fps)
 
-    while i <= 10:  # True:
-        print(f" {i} % 2 = {i % 2}")
-        # print(f" {i} % 5 = {i % 5}")
-        # print(f" 5 % {i} = {5 % i}")
-
-        # print(f" {i} & 2 = {i & 2}")
-        # print(f" {i} & 5 = {i & 5}")
-        # print(f" 5 & {i} = {5 & i}")
-        i += 1
-
-    print(f"{integer+1=} {integer-1=} {integer*1=} {integer/1=}")
-    # print(f"{integer.__add__(1)=} {integer.__sub__(1)=} {integer.__mul__(1)=} {integer.__divmod__(1)=}")
-
-    print(f"{string.lower()=} {string.upper()=} {string.isupper()=}")
-
-    print(f"{tuple_.count(1)=} {tuple_.count(0)=}")
-
-    print(f"{list_[1]=}")
-
-    function("a")  # -> functions arg: a
-    function_("a", "b")  # -> functions args: ('a', 'b')
-    function__(a="a", b="b")  # -> functions args: {'a': 'a', 'b': 'b'}
-    function_ab(1, 2)  # -> functions a: {1}, b {2}
-    function_ab(1, "2")  # -> functions a: {1}, b {2}
-    # function("a", "b") # -> TypeError: function() takes 1 positional argument but 2 were given
-    # function_("a", b="b")  # -> TypeError: function_() got an unexpected keyword argument 'b'
-    # function__("a","b")  # ->TypeError: function__() takes 0 positional arguments but 2 were given
-
-    # https://www.w3schools.com/python/
-
-
-def function(arg):
-    print(f"functions arg: {arg}")
-
-
-def function_ab(a: int, b: int):
-    print(f"functions a: {a}, b {b}")
-
-
-def function_(*args):
-    print(f"functions args: {args}")
-
-
-def function__(**kwargs):
-    print(f"functions kwargs: {kwargs}")
-
-
-def d(r):
-    return r * 2
-
-
-def arrays():
-    array: list = [1, "hallo", "bob"]
-
-    print(f"{array=}, {len(array)}, {array[0]}, {array[1]}, {array[-1]}, {array[:1]=}, {array[:1]=}")
-
-    dog_imp: list = ["legs", "tail", "namen", "rase", "wuf", "speak"]
-
-    def speak(name, sound):
-        return f"{name} make {sound}"
-
-    dog: list = [4, 1, "bella", "Bulldog", "wufii", speak]
-
-    print(dog[-1]("wAf"))  # -> dog.speak("wAf")
-
-
-def level2():
-    def helper_1(x: int) -> int:
-        return x * 2
-
-    halper_2 = lambda x: x * 2
-
-    print(2 * 2, helper_1(2), halper_2(2))
-
-    print(map(helper_1, [1, 2, 3, 4, 5, 6, 7]))
-
-    print(list(map(halper_2, [1, 2, 3, 4, 5, 6, 7])))
-
-
-class Circle:
-    radius = 4
-
-    def __init__(self, name, x, y):
-        self.name = name
-        self.x = x
-        self.y = y
-
-    def d(self):
-        return d(self.radius)
-
-    def set_r(self, radius):
-        self.radius = radius
-
-
-class MyClass(Circle):
-
-    def __init__(self, name, x, y):
-        super().__init__(name, x, y)
-
-    def a(self):
-        return (pi * self.radius) ** 2  # ADD build in function
+        pygame.display.flip()
 
 
 if __name__ == '__main__':
-    print("Hello, World!")
+    print("Hello, Pygame and Pymunk")
     print("Universe!")
-
-    level2()
-"""
-    k = 2  # Circle
-    kx = 2  #
-    ky = 0  #
-
-    print(f"diameter : {k*2}")  # -> diameter : 4
-    # ...
-
-    circle = Circle("c1", 2, 0)
-    print(f"diameter : {circle.d()}")  # -> diameter : 8
-
-    my_class = MyClass("c1", 2, 0)
-    my_class.set_r(5)
-    print(f"aria : {my_class.a()}")  # -> aria : 246.74011002723395
-"""
+    # starting Game
+    pygame.init()
+    functional()
