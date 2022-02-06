@@ -5,9 +5,3 @@ list_name = ["black", "red", "green", "blue", "yellow", "purple", "azul", "white
 
 def name_to_list(name: str):
     return name_list[list_name.index(name.lower())]
-
-
-hall = {"asd": 12, "hallo": "bb"}
-
-for x,y in enumerate(list(hall.keys())):
-    print(x,y)

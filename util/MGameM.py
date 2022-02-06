@@ -496,7 +496,7 @@ class Sheet:
         sprite.set_colorkey(self.color_key)
         sprite.blit(self.full_sheet_img, anker, self.sprite_sheet_info[name])
         if img_size != 1:
-            return pygame.transform.scale(sprite, (width * img_size, height * img_size))
+            return pygame.transform.scale(sprite, (round(width * img_size), round(height * img_size)))
         return sprite
 
 

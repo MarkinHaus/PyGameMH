@@ -36,14 +36,14 @@ def functional():
               (screen.width - border_offset, screen.height - border_offset),
               (screen.width - border_offset, border_offset)]
     border = Sprite(screen, "border_l").make_sprite(type_="box", width=5, aa_lines_list=points,
-                                                    collisions_for_sep_aa_line=(2, 3, 4, 5), is_closed=True
+                                                    collisions_for_sep_aa_line=(2, 3, 0, 5), is_closed=True
                                                     # color_for_aa_line=((255, 255, 0),(255, 0, 255),(255, 0, 0),
                                                     # (255, 0, 0))
                                                     , color="white", elasticity=1,
                                                     physics=False)  # line
 
 
-    #border.add_to_space(space)
+    border.add_to_space(space)
 
     def round_e_1_(arbiter, space_, data):
         player_sprite.body.position = screen.width - border_offset - player_sprite.width/2 - 1*abs(player_sprite.body.angle*10),\
@@ -59,13 +59,6 @@ def functional():
 
     round_e_2 = space.add_collision_handler(1, 3)
     round_e_2.pre_solve = round_e_2_
-
-    def round_e_3_(arbiter, space_, data):
-        player_sprite.body.position = border_offset + player_sprite.width/2 - 1*abs(player_sprite.body.angle*10), player_sprite.body.position[1]
-        return False
-
-    round_e_3 = space.add_collision_handler(1, 4)
-    round_e_3.pre_solve = round_e_3_
 
     def round_e_4_(arbiter, space_, data):
         player_sprite.body.position = player_sprite.body.position[0],\

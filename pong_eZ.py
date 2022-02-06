@@ -180,10 +180,11 @@ def functional():
             time_out += 1
             out = True
 
-            text.show(f"!!!PL{1 if life_pl2[0] <= 0 else 2} WIN!!! Starting in {int(300 / time_out * 100)}",
+            text.show(f"!!!PL{1 if life_pl2[0] <= 0 else 2} WIN!!! Starting in {int(100 / time_out * 100)}",
                       (screen.width / 2 - 100, screen.height / 2 - 50), (255, 255, 255))
 
-            if time_out >= 300:
+            if time_out >= 100:
+                time_out = 0
                 life_pl1[0] = 3
                 life_pl2[0] = 3
                 out = False
