@@ -1,4 +1,4 @@
-from util.MGameMLive import Screen, Sprite, Text, Mouse, clock, space, Map
+from util.MGameM import Screen, Sprite, Text, Mouse, clock, space, Map
 import random
 import pygame
 
