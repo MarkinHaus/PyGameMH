@@ -39,6 +39,7 @@ class Sprite:  # blueprint for super class handles all game objects to print and
         self.screen: Screen = screen
         self.name = name
         self.def_cord = def_cord
+        self.dt = 1
 
         # vars for all objects
         self.type_: str = ""
@@ -299,7 +300,6 @@ class Sprite:  # blueprint for super class handles all game objects to print and
                              pos[1] - surfcentery + rotation_offset_center[1] + rh2 - incfromroth))
 
         def draw_func():
-
             rectRotated(self.screen.surface, self.color, [self.body.position[0] - round(self.width / 2),
                                                           self.screen.height - self.body.position[1] - round(
                                                               self.height / 2), self.width, self.height], False, 0,

@@ -14,11 +14,11 @@ def average(dt_l_):
 def live(cap=True):
     # Open a Window
 
-    screen = Screen(width=1650, height=720, title=">Test<")
+    screen = Screen(width=1250, height=720, title=">Test<")
 
     # init test Background
 
-    background_map = Map(screen, "statick", color=(155, 5, 155))  # statick statick-img dynamic-img
+    background_map = Map(screen, "dynamic-img", color=(155, 5, 155))  # statick statick-img dynamic-img
     background_map.load_dynamic_img("img1", "img/testBG.png", (200, 0))
     # init test Mouse
 
@@ -69,7 +69,7 @@ def live(cap=True):
                         position=(random.randint(60, 720), random.randint(60, 720)), color="Red", physics=True,
                         velocity=(random.randint(-100, 100), random.randint(-100, 100)))
     sprite3.make_sprite("circle", radius=20, elasticity=1, position=(random.randint(60, 720), random.randint(60, 720)),
-                        color="Green", physics=True, velocity=(random.randint(-100, 100), random.randint(-100, 100)))
+                        color="Green", physics=True, velocity=(random.randint(-10, 10), random.randint(-10, 10)))
     sprite4.make_sprite("img", elasticity=1,
                         position=(400, 400), physics=True, velocity=(20, 10),
                         file="img/testIB.png")
@@ -80,7 +80,7 @@ def live(cap=True):
     sprite4.add_to_space(space)
 
     points = [(25, 25), (25, screen.height - 25), (screen.width - 25, screen.height - 25), (screen.width - 25, 25)]
-    border = Sprite(screen, "border_l").make_sprite(type_="box", width=5, aa_lines_list=points,
+    border = Sprite(screen, "border_l").make_sprite(type_="box", width=15, aa_lines_list=points,
                                                     collisions_for_sep_aa_line=(2, 4, 3, 4), is_closed=True
                                                     # color_for_aa_line=((255, 255, 0),(255, 0, 255),(255, 0, 0),
                                                     # (255, 0, 0))
@@ -97,13 +97,13 @@ def live(cap=True):
     text.init_font(20)
     # main loop
     coll_count = 0
-    turns = 5000
-    fps = 50
+    turns = 1000
+    fps = 15
     fs = ""
     dt_l = []
 
     for i in range(turns):
-        dt = clock.tick(fps) if cap else 0.8
+        dt = clock.tick(fps) / 10 if cap else 0.8
         # print(dt)
         space.step(1 / dt)
         p = i * 100 / turns
@@ -121,44 +121,14 @@ def live(cap=True):
             if p % 5 == 0 and p < 20:
                 text.init_font(size=i)
             text.show(f"TeStInG ´tEx*t {p}%", (screen.width / 2 - 200, screen.height / 2), (255, 255, 255))
-
-        if p > 10:
-            move_x = False
-            move_y = False
-            speed_x = 150
-            speed_y = 150
-            if p > 15:
-                move_x = True
-                move_y = False
-                speed_x = 150
-                speed_y = 150
-            if p > 20:
-                move_x = True
-                move_y = False
-                speed_x = - 150
-                speed_y = 150
-            if p > 30:
-                move_x = False
-                move_y = True
-                speed_x = 150
-                speed_y = -150
-            if p > 35:
-                move_x = False
-                move_y = True
-                speed_x = 150
-                speed_y = 150
             if p > 40:
-                move_x = False
-                move_y = False
-                speed_x = 150
-                speed_y = 150
+                background_map.speed = [-50, 0]
             # background.show()  # move_x=move_x, speed_x=speed_x, move_y=move_y, speed_y=speed_y)
             if p < 50:
                 text.show(f"Testing background {i * 100 / 500}%", (screen.width / 2, 45),
                           (255, int(255 % i / 255), 255))
 
         if p > 50:
-            step = f"testing sprite 3"
             text.show(f"Testing sprite collision {p}%", (0, 80), (255, 255, 255))
 
         # background.show()
@@ -170,6 +140,7 @@ def live(cap=True):
 
         alim1.next_step(6)
         alim1.draw_func()
+
 
         mouse.show_m(False)
         pygame.display.update()
@@ -192,9 +163,9 @@ if __name__ == '__main__':
     live()
     print(f"time {time.time() - t1}")
 
-    # t1 = time.time()
-    # live(False)
-    # print(f"time {time.time() - t1}")
+    t1 = time.time()
+    live(False)
+    print(f"time {time.time() - t1}")
 
     exit(0)
 

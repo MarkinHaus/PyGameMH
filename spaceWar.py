@@ -88,14 +88,14 @@ def functional():
     wave = 0
     run = True
     player_sprite.body.angle = -1.6
-
+    fps = 25
     while run:
         bg1.draw()
         bg.draw()
 
         # using clock to cap fps
-        dt = clock.tick(25) / 10
-        space.step(1/25)
+        dt = clock.tick(fps) / 10
+        space.step(1/fps)
         # dt control movement speed
 
         # starting event loop
