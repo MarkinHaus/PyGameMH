@@ -537,7 +537,6 @@ class Map:  # sorry not finished jet | Build on top fo Sprites
         #                                     "x", "x", "x", "/n",
         # ] spec = {"spec": {"map": (width, height), "wh": ( width, height)}, "x": img} #3840 720 ####
         spec_wh = spec["spec"]
-        print(spec_wh["map"][0], spec_wh["map"][1], "####")
         sprite = pygame.Surface((spec_wh["map"][0], spec_wh["map"][1]))
         sprite.set_colorkey(self.color_key)
         x, y = (0, 0)
@@ -547,7 +546,6 @@ class Map:  # sorry not finished jet | Build on top fo Sprites
                 x = 0
                 y += spec_wh["wh"][1]
             else:
-                print(x, y)
                 sprite.blit(spec[ob], (x, y), (0, 0, spec_wh["wh"][0], spec_wh["wh"][0]))
                 x += spec_wh["wh"][0]
 
@@ -567,8 +565,6 @@ class Map:  # sorry not finished jet | Build on top fo Sprites
         if self.type == "statick-img":
             self.images[self.id_].draw_func()
         if self.type == "dynamic-img":
-
-            print(self.images[self.id_].body.position[1], self.screen.height, self.speed[1] > 0)
 
             self.images[self.id_].body.position = [self.images[self.id_].body.position[0] + self.speed[0],
                                                    self.images[self.id_].body.position[1] + self.speed[1]]
