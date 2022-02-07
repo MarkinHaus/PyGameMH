@@ -10,27 +10,58 @@ from util.Color import name_to_list
 import pymunk
 
 
-class Sprite:
+# importing all necessary moduls
+
+class Sprite:  # blueprint for super class handles all game objects to print and pymunk simulation
     def __init__(self, screen, name: str, def_cord: str = "bl"):
+
+        """
+        callable functions :
+            *-> function must bee called
+
+            *make_sprite
+            add_to_space
+            *draw_func
+
+            do_kill
+            if_of_screen
+            debug_draw_rect
+            slow_down
+            set_do_slow_down
+            rotate
+            do_rotate
+
+        :param screen: screen to draw sprite
+        :param name: name to identify sprite in a list
+        :param def_cord: define origin bl = bottem left | tl = top left
+        """
+
         self.screen: Screen = screen
         self.name = name
         self.def_cord = def_cord
+
+        # vars for all objects
         self.type_: str = ""
+        self.collisions_level: int = 0
+        self.color: tuple = (0, 0, 0)
+        self.draw_func = None  # draw the sprite to screen
+
+        # for type = line and rect
         self.width: float = 0
         self.height: float = 0
 
+        # for type = line
         self.point1: tuple or list or None = (0, 0)
         self.point2: tuple or list or None = (0, 0)
 
-        self.collisions_level: int = 0
-        self.color: tuple = (0, 0, 0)
-        self.border_offset: int = 5
-        self.draw_func = None
+        # for type = img
         self.img: pygame.image = None
-
         self.file: str = ""
         self.img_size: int = 1
+
+        # for type = circle
         self.radius: float = 0
+
         self.aa_lines_list: list = []
         self.aa_lines_list_ob: List["Sprite"] = []
         self.is_closed = False
@@ -44,19 +75,19 @@ class Sprite:
         self.density = 1
         self.friction = 0
         self.auto_angel = [0, False]
+
+        # set behavior
         self.do_slow_down = False
-
-        self.debug_img_rot_draw = False
-
+        self.debug_img_rot_draw = False  # type specific img
         self.kill = False
 
     def __str__(self):
-        return f"Type: {self.type_}, width {self.width}, height {self.height}, \n"
+        return f"Type: {self.type_}, name {self.name}, id:  {self}, \n"
 
-    def do_kill(self):
+    def do_kill(self):  # allows killing self if future necessary clear memory
         return self.kill
 
-    def set_color(self, color: str or list, color_keys: list = ()):
+    def set_color(self, color: str or list, color_keys: list = ()):  # convert color for pygame using The Color module
         if self.type_ == "box":
             list(map(lambda line: line.set_color(color if not color_keys else
                                                  color_keys[self.aa_lines_list_ob.index(line)]), self.aa_lines_list_ob))
@@ -65,19 +96,19 @@ class Sprite:
             if type(color) == str:
                 self.color = name_to_list(color)
 
-    def add_to_space(self, space_):
+    def add_to_space(self, space_):  # adds shape and body to simulation space for pymunk
         if self.type_ == "box":
             list(map(lambda line: line.add_to_space(space_), self.aa_lines_list_ob))
         else:
             space_.add(self.shape, self.body)
 
-    def set_shape_props(self):
+    def set_shape_props(self):  # set extra physic props to object
         self.shape.elasticity = self.elasticity
         self.shape.density = self.density
         self.shape.friction = self.friction
         self.shape.collision_type = self.collisions_level
 
-    def if_of_screen(self):
+    def if_of_screen(self):  # test if position of object is not in screen ( you can't see it any loger )
         return sum(self.body.position) >= self.screen.width + self.screen.height + 100 or sum(
             self.body.position) <= -100
 
@@ -104,6 +135,80 @@ class Sprite:
                     is_closed: bool = False,
                     collisions_for_sep_aa_line: list or tuple = (),
                     color_for_aa_line: list or tuple = (), new_body=True):
+
+        # super function makes sprite object (mistakes are often made)
+        """
+        :param type_: string type of object : img rect circle line box | not implemented jet: polygon ellipse
+        :param collisions_level: int a real number for identifying object in physic simulation ( collision handler )
+        :param point1: (int, int) point in  self.def_cord defined space used for type line
+        :param point2: (int, int) point in  self.def_cord defined space used for type line
+        :param width: int defined width of object
+        :param height: int defined height of object
+        :param radius: int defined radius of object
+        :param color: (von 0 bis 255, von 0 bis 255,von 0 bis 255) defined color of object
+        :param file: str or img the image witch should have been drawn on screen
+        :param img_size: zoom in +1 or aut -1 normal image size = 1
+        :param mass: float defined mass of object
+        :param moment: float defined moment of object
+        :param position: can bee (int or float, int or float) must bee bei initialising (int, int)
+        :param velocity: float defined velocity of object
+        :param elasticity: float defined elasticity of object
+        :param physics: bool Body type = Statick (False) or Dynamic (True)
+        :param ken: physics must bee True Body type = Kinematic (True) default False
+        :param density: float defined density of object
+        :param friction: float defined friction of object
+        :param aa_lines_list: list of points to make a box object
+        :param is_closed: connect the first and the last point of box oject
+        :param collisions_for_sep_aa_line: set collisions_level for every single line
+        :param color_for_aa_line: set color for every single line
+        :param new_body: make new physic object default True
+        :return: sprite object
+
+
+        # for physics must be added to space
+
+        self.add_to_space(space)
+
+        # list(
+        #    map(
+        #        lambda sprite_: sprite_.add_to_space(space)
+        #        , sprites
+        #    )
+        # )
+        # lambda sprite: sprite.add_to_space(space) -> def _lambda_(sprite): sprite.add_to_space(space)
+
+
+        # make circle
+
+        ball = Sprite(screen, "ball")  # ball
+        ball.make_sprite(type_="circle",
+                     radius=10,
+                     color="white",
+                     collisions_level=1,
+                     position=(screen.width / 2, screen.height / 2),
+                     velocity=(240 * random.choice([-1, 1]), 240 * random.choice([-1, 1])),
+                     mass=10,
+                     moment=10,
+                     elasticity=1, physics=True)
+
+
+        # make rect
+
+        rect = Sprite(screen, "rect1")  # rect
+        rect.make_sprite("rect", width=80, height=80, elasticity=1,
+                        position=(400, 400), color="Blue", physics=True,
+                        velocity=(50. -50))
+
+
+        # make img
+
+        img = Sprite(screen, "img1")
+        img.make_sprite("img", elasticity=1,
+                        position=(400, 400), physics=True, velocity=(20, 10),
+                        file="img/testIB.png")
+
+
+        """
 
         self.set_color(color)
         if not self.type_:
@@ -203,7 +308,7 @@ class Sprite:
         if not self.draw_func:
             self.draw_func = draw_func
 
-    def debug_draw_rect(self, color=(150, 150, 150)):
+    def debug_draw_rect(self, color=(150, 150, 150)):  # draw a rect from top left to bottem right ( is not the hitbox)
         pygame.draw.rect(self.screen.surface, color, (self.body.position[0] - round(self.width / 2),
                                                       self.screen.height - self.body.position[
                                                           1] - round(
@@ -215,14 +320,14 @@ class Sprite:
     def set_do_slow_down(self, set_=False):
         self.do_slow_down = set_
 
-    def slow_down(self, friction):
+    def slow_down(self, friction):  # self.do_slow_down must be True body slows down
         if self.do_slow_down:
             self.body.velocity = (self.body.velocity[0] / friction, self.body.velocity[1] / friction)
 
-    def rotate(self, angle_rate, do=False):
+    def rotate(self, angle_rate, do=False):  # set rotation speed if do is True else set slowdown rate if do is False
         self.auto_angel = [angle_rate, do]
 
-    def do_rotate(self, f=0.1):
+    def do_rotate(self, f=0.1):  # rotate object by self.rotate(...) must bee called in main game loop
         if self.auto_angel[1]:
             self.body.angle += self.auto_angel[0]
             if abs(self.body.angle) >= 2 * math.pi:
@@ -369,24 +474,28 @@ class Sprite:
         return line
 
 
-class Background:
+class Map:  # sorry not finished jet | Build on top fo Sprites
+    """
+    # in main loop -> map.draw()
+    --------------------------------------
+    statick | map = Map(screen, "statick", color="white")
+    ---------------------------------------
+    statick-img | map = Map(screen, "statick-img")
 
-    def __init__(self, screen, image_n, wh=(0, 0), img_size=1):
-        self.img = Sprite(screen, "Background")
-        self.img.make_sprite("img", -1, wh[0], wh[1], file=image_n, img_size=img_size)
-        self.img2 = Sprite(screen, "Background2")
-        self.img2.make_sprite("img", -1, wh[0], wh[1], file=image_n, img_size=img_size)
-        self.screen = screen
+    map.load_statick_img("ID1", "img/test.png")
+    map.load_statick_img("ID2", "img/test1.png")
 
-        self.x = 0
-        self.y = 0
+    map.lode_new("ID1") or map.lode_new("ID2")
+    ---------------------------------------
+    dynamic-img | map = Map(screen, "dynamic-img")
 
-    def show(self):
-        self.img.draw_func()
-        self.img2.draw_func()
+    map.load_statick_img("ID1", "img/test.png")
+    map.load_dynamic_img("ID3", "img/test.png", loop=(0, 1) -> move up | loop=(0, -1) -> move down |
+                                              , loop=(1, 0) -> move right | loop=(-1, 0) -> move left |
 
+    map.speed = [horizontal speed, vertical speed]
 
-class Map:
+    """
 
     def __init__(self, screen, type_, color=(0, 0, 0)):  # types = statick statick-img dynamic-img
 
@@ -449,39 +558,58 @@ class Map:
                                                                              physics=False)
         self.loop = (self.screen.width / 2, self.screen.height / 2)
 
-
     def camera_to_pos(self, pos):
         self.images[self.id_].body.velocity = -abs(self.images[self.id_].body.position[0] - pos[0]), \
                                               -abs(self.images[self.id_].body.position[1] - pos[1])
 
     def draw(self):
-        if self.type == "statick":
-            self.screen.surface.fill(self.color)
+        self.screen.surface.fill(self.color)
         if self.type == "statick-img":
             self.images[self.id_].draw_func()
         if self.type == "dynamic-img":
 
             print(self.images[self.id_].body.position[1], self.screen.height, self.speed[1] > 0)
 
-            self.images[self.id_].body.position = [self.images[self.id_].body.position[0]+self.speed[0],
-                         self.images[self.id_].body.position[1]+self.speed[1]]
+            self.images[self.id_].body.position = [self.images[self.id_].body.position[0] + self.speed[0],
+                                                   self.images[self.id_].body.position[1] + self.speed[1]]
 
             self.images[self.id_].draw_func()
 
-            if self.images[self.id_].body.position[0] + self.images[self.id_].width/2 >= self.screen.width + self.images[self.id_].width/2 and self.speed[0] > 0:
+            if self.images[self.id_].body.position[0] + self.images[self.id_].width / 2 >= self.screen.width + \
+                    self.images[self.id_].width / 2 and self.speed[0] > 0:
                 self.images[self.id_].body.position = 0, self.images[self.id_].body.position[1]
 
-            if self.images[self.id_].body.position[0] + self.images[self.id_].width / 2 <= self.images[self.id_].width / 2 and self.speed[0]<0:
+            if self.images[self.id_].body.position[0] + self.images[self.id_].width / 2 <= self.images[
+                self.id_].width / 2 and self.speed[0] < 0:
                 self.images[self.id_].body.position = self.screen.width, self.images[self.id_].body.position[1]
 
             if self.images[self.id_].body.position[1] >= self.screen.height and self.speed[1] > 0:
                 self.images[self.id_].body.position = self.images[self.id_].body.position[0], 0
 
-            if self.images[self.id_].body.position[1] <= 0 and self.speed[1]<0:
+            if self.images[self.id_].body.position[1] <= 0 and self.speed[1] < 0:
                 self.images[self.id_].body.position = self.images[self.id_].body.position[0], self.screen.height / 2
 
 
 class Sheet:
+
+    """
+        sprite_sheet_data = {
+        "width": 359,
+        "height": 261,
+        "default": (0, 0, 359, 261),
+        "player": (32, 19, player_wh[0], player_wh[1]),
+        "enemy1": (255, 118, e_type1_wh[0], e_type1_wh[1]),
+        "enemy2": (254, 117, e_type2_wh[0], e_type2_wh[1])
+    }
+
+    sprite_sheet = Sheet("img/spaceWarAssets.png", sprite_sheet_data, color_key=(0, 0, 0)
+    # color_key -> make color transparent
+    player_sprite = Sprite(screen, "player")  # img
+
+    img_file = sprite_sheet.make_new_sheet_img("player", img_size=0.3)
+
+    player_sprite.make_sprite(type_="img", width=player_wh[0], height=player_wh[1], file=img_file, img_size=0.3),
+    """
 
     def __init__(self, file, sprite_sheet_info, color_key=(0, 0, 0)):
         self.sprite_sheet_info = sprite_sheet_info
@@ -500,7 +628,45 @@ class Sheet:
         return sprite
 
 
-class Animation(Sheet, Sprite, ABC):
+class Animation(Sheet, Sprite, ABC):  # extension for Sprite enables animated Sprite
+
+    """
+        sprite_sheet_data = {
+        "0": (0, 0, 49, 49),
+        "1": (51, 0, 49, 49),
+        "2": (101, 0, 49, 49),
+        "3": (151, 0, 49, 49),
+        "4": (201, 0, 49, 49),
+        "5": (251, 0, 49, 49),
+    }
+
+    sprite_sheet_data2 = {
+        "0": (0, 51, 49, 49),
+        "1": (51, 51, 49, 49),
+        "2": (101, 51, 49, 49),
+        "3": (151, 51, 49, 49),
+        "4": (201, 51, 49, 49),
+        "5": (251, 0, 49, 49),
+    }
+    alim1 = Animation(screen=screen, name="test", file="img/testAlim1.png", sprite_sheet_info=sprite_sheet_data,
+                      color_key=(255, 255, 255))
+
+    alim1.make_new_animation("a2", sprite_sheet_data2, size=4)
+
+    alim1.make_new_animation("a1", sprite_sheet_data, size=4)
+    alim1.debug_img_rot_draw = True
+    alim1.load_animation("a1")
+    alim1.make_sprite("img", elasticity=1,
+                      position=(600, 400), physics=True, velocity=(20, 10),
+                      file=alim1.stos[alim1.ac_alim][0][1])
+
+    alim1.add_to_space(space)
+
+    # like a normal sprite
+
+    # self.next_step(FPS) must pe in main loop FPS to play the animation
+
+    """
 
     def __init__(self, screen, name, file, sprite_sheet_info=None, def_cord="bl", color_key=(0, 0, 0)):
         Sheet.__init__(self, file, sprite_sheet_info, color_key)
@@ -527,7 +693,7 @@ class Animation(Sheet, Sprite, ABC):
         return sto
 
     def next_step(self, fps):
-        if time.time()-self.pastime >= 1 / fps:
+        if time.time() - self.pastime >= 1 / fps:
             if self.step >= len(self.stos[self.ac_alim]):
                 self.step = 0
             self.img = self.stos[self.ac_alim][self.step][1]
@@ -535,7 +701,7 @@ class Animation(Sheet, Sprite, ABC):
             self.pastime = time.time()
 
 
-class Mouse:
+class Mouse:  # for ui coming in future
 
     def __init__(self, screen, img_s: list or None = None):
         if img_s is None:
@@ -566,7 +732,7 @@ class Mouse:
 
 
 class Screen:
-    def __init__(self, width: int = 800, height: int = 600, background: str or tuple or list = 'black',
+    def __init__(self, width: int = 800, height: int = 600,
                  title: str = ""):
         surface = pygame.display.set_mode((width, height))
         pygame.display.set_caption(title)

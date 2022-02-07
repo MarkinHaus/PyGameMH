@@ -257,8 +257,8 @@ def functional():
         mouse.show_m(False)
 
         # -------------------using clock to cap fps and space.step to run physics----------------#
-        space.step(1 / fps)
         clock.tick(fps)
+        space.step(1 / fps)
 
         pygame.display.flip()
 

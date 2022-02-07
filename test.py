@@ -25,28 +25,30 @@ def live(cap=True):
     mouse = Mouse(screen, None)  # ["img/testMG1.png", "img/testMG1.png"])
     sprites = []
     sprite_sheet_data = {
-        "0": (0, 0, 49, 49),
-        "1": (50, 0, 49, 49),
-        "2": (100, 0, 49, 49),
-        "3": (150, 0, 49, 49),
-        "4": (200, 0, 49, 49),
+        "0": (1, 0, 49, 49),
+        "1": (51, 0, 49, 49),
+        "2": (101, 0, 49, 49),
+        "3": (151, 0, 49, 49),
+        "4": (201, 0, 49, 49),
+        "5": (251, 0, 49, 49),
     }
 
     sprite_sheet_data2 = {
-        "0": (0, 50, 49, 49),
-        "1": (50, 50, 49, 49),
-        "2": (100, 50, 49, 49),
-        "3": (150, 50, 49, 49),
-        "4": (200, 50, 49, 49),
+        "0": (1, 51, 49, 49),
+        "1": (51, 51, 49, 49),
+        "2": (101, 51, 49, 49),
+        "3": (151, 51, 49, 49),
+        "4": (201, 51, 49, 49),
+        "5": (251, 51, 49, 49),
     }
     alim1 = Animation(screen=screen, name="test", file="img/testAlim1.png", sprite_sheet_info=sprite_sheet_data,
-                      color_key=(255, 255, 255))
+                      color_key=(0, 0, 0))
 
     alim1.make_new_animation("a2", sprite_sheet_data2, size=4)
 
-    alim1.make_new_animation("a1", sprite_sheet_data, size=4)
+    alim1.make_new_animation("a1", sprite_sheet_data, size=2)
     alim1.debug_img_rot_draw = True
-    alim1.load_animation("a1")
+    alim1.load_animation("a2")
     alim1.make_sprite("img", elasticity=1,
                       position=(600, 400), physics=True, velocity=(20, 10),
                       file=alim1.stos[alim1.ac_alim][0][1])
@@ -166,7 +168,7 @@ def live(cap=True):
 
         list(map(f, sprites))
 
-        alim1.next_step(fps)
+        alim1.next_step(6)
         alim1.draw_func()
 
         mouse.show_m(False)
