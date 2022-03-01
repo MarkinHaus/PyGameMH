@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2022-02-24T08:17:40.866Z" agent="5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36" etag="bdCNXNeZ9XOx5wCYg1xJ" version="16.6.3" type="github">
+<mxfile host="app.diagrams.net" modified="2022-03-01T13:26:33.689Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36" etag="XjNDh22CwKZWa1Yp17AQ" version="16.6.4" type="github">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
-    <mxGraphModel dx="1805" dy="1796" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="#F1FAEE" math="0" shadow="0">
+    <mxGraphModel dx="1863" dy="1796" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="#F1FAEE" math="0" shadow="0">
       <root>
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-0" />
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0" />
@@ -140,6 +140,27 @@
             </Array>
             <mxPoint as="offset" />
           </mxGeometry>
+        </mxCell>
+        <mxCell id="n_gj3XwwI1YD6v5uSz1g-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="n_gj3XwwI1YD6v5uSz1g-0">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="15" y="-500" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-180" y="-420" />
+              <mxPoint x="15" y="-420" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n_gj3XwwI1YD6v5uSz1g-0" value="Player" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="-380" y="70" width="380" height="314" as="geometry" />
+        </mxCell>
+        <mxCell id="n_gj3XwwI1YD6v5uSz1g-1" value="+ name: str&#xa;+ can_respawn: bool&#xa;- controls: dict&#xa;+ health: int&#xa;+ experience: int&#xa;+ powerUp: str&#xa;- damage: int&#xa;+ inventory: dict&#xa;+/- speed: int&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="n_gj3XwwI1YD6v5uSz1g-0">
+          <mxGeometry y="26" width="380" height="144" as="geometry" />
+        </mxCell>
+        <mxCell id="n_gj3XwwI1YD6v5uSz1g-2" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="n_gj3XwwI1YD6v5uSz1g-0">
+          <mxGeometry y="170" width="380" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="n_gj3XwwI1YD6v5uSz1g-3" value="+ __init__(self, name: str, speed: int, controls: dict = {&quot;L&quot;: &quot;a&quot;, &quot;R&quot;: &quot;d&quot;, &quot;U&quot;: &quot;w&quot;, &quot;D&quot;: &quot;s&quot;, &quot;J&quot;, &quot; &quot;, &quot;S&quot;: &quot;mr&quot;, &quot;RL&quot;: &quot;q&quot;, &quot;RR&quot;: &quot;e&quot;}) &#xa;+ load_avatar()&#xa;+ move()&#xa;+ jump()&#xa;+ respawn()&#xa;+ pick_up()&#xa;+ use()&#xa;+ upgrade()&#xa;+ interact()" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="n_gj3XwwI1YD6v5uSz1g-0">
+          <mxGeometry y="178" width="380" height="136" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
