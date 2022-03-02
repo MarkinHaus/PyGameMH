@@ -1,0 +1,168 @@
+<mxfile host="app.diagrams.net" modified="2022-03-01T13:26:33.689Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36" etag="XjNDh22CwKZWa1Yp17AQ" version="16.6.4" type="github">
+  <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
+    <mxGraphModel dx="1863" dy="1796" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="#F1FAEE" math="0" shadow="0">
+      <root>
+        <mxCell id="WIyWlLk6GJQsqaUBKTNV-0" />
+        <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0" />
+        <mxCell id="FMwDaVfZEnFEAQgHHLUg-0" value="Screen" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=0;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#A8DADC;strokeColor=#457B9D;fontColor=#1D3557;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="-720" y="-1120" width="350" height="108" as="geometry" />
+        </mxCell>
+        <mxCell id="FMwDaVfZEnFEAQgHHLUg-1" value="+self.width: int&#xa;+self.height: int&#xa;+self.titel: str&#xa;+self.surface: pygame.display" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontColor=#1D3557;" parent="FMwDaVfZEnFEAQgHHLUg-0" vertex="1">
+          <mxGeometry width="350" height="74" as="geometry" />
+        </mxCell>
+        <mxCell id="FMwDaVfZEnFEAQgHHLUg-2" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=#457B9D;fontColor=#1D3557;labelBackgroundColor=#F1FAEE;" parent="FMwDaVfZEnFEAQgHHLUg-0" vertex="1">
+          <mxGeometry y="74" width="350" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="FMwDaVfZEnFEAQgHHLUg-3" value="+__init__(self, width: int = 800, height: int = 600,title: str = &quot;&quot;):" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontColor=#1D3557;" parent="FMwDaVfZEnFEAQgHHLUg-0" vertex="1">
+          <mxGeometry y="82" width="350" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="FMwDaVfZEnFEAQgHHLUg-4" value="Text" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=20;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#A8DADC;strokeColor=#457B9D;fontColor=#1D3557;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="-720" y="-930" width="350" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="FMwDaVfZEnFEAQgHHLUg-5" value="-self.screen: Screen&#xa;-self.font: int&#xa;-self.init: bool" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontColor=#1D3557;" parent="FMwDaVfZEnFEAQgHHLUg-4" vertex="1">
+          <mxGeometry y="20" width="350" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="FMwDaVfZEnFEAQgHHLUg-6" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=#457B9D;fontColor=#1D3557;labelBackgroundColor=#F1FAEE;" parent="FMwDaVfZEnFEAQgHHLUg-4" vertex="1">
+          <mxGeometry y="80" width="350" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="FMwDaVfZEnFEAQgHHLUg-7" value="+__init__(self, screen: Screen):&#xa;+init_font(self, size: int, text_type: str=&#39;Arial.ttf&#39;):&#xa;+show(self, text: str, xy: tuple or list, color: tuple or list=(0, 0, 0)):" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontColor=#1D3557;" parent="FMwDaVfZEnFEAQgHHLUg-4" vertex="1">
+          <mxGeometry y="88" width="350" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="FMwDaVfZEnFEAQgHHLUg-8" value="Animation" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#A8DADC;strokeColor=#457B9D;fontColor=#1D3557;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="-180" y="-730" width="390" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="FMwDaVfZEnFEAQgHHLUg-9" value="-self.step: int&#xa;-self.keys: list&#xa;+self.stos: dict&#xa;-self.ac_alim: str&#xa;-self.pastime: int" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontColor=#1D3557;" parent="FMwDaVfZEnFEAQgHHLUg-8" vertex="1">
+          <mxGeometry y="26" width="390" height="84" as="geometry" />
+        </mxCell>
+        <mxCell id="FMwDaVfZEnFEAQgHHLUg-10" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=#457B9D;fontColor=#1D3557;labelBackgroundColor=#F1FAEE;" parent="FMwDaVfZEnFEAQgHHLUg-8" vertex="1">
+          <mxGeometry y="110" width="390" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="FMwDaVfZEnFEAQgHHLUg-11" value="+__init__(self, screen: Screen, name: str, file: str or pygame.sprite, &#xa;    sprite_sheet_info: dict or None, def_cord: str, color_key: tuple or list):&#xa;+make_new_animation(self, name: str, sprite_sheet_info: dict,&#xa;     size: int=1, anker: tuple or list=(0, 0)):&#xa;+load_animation(self, name: str):&#xa;+hot_lade(self, size: float, anker: tuple or list=(0, 0)) -&gt; dict:&#xa;+next_step(self, fps: float):" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontColor=#1D3557;" parent="FMwDaVfZEnFEAQgHHLUg-8" vertex="1">
+          <mxGeometry y="118" width="390" height="112" as="geometry" />
+        </mxCell>
+        <mxCell id="FMwDaVfZEnFEAQgHHLUg-12" value="Sheet" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#A8DADC;strokeColor=#457B9D;fontColor=#1D3557;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="-720" y="-720" width="410" height="176" as="geometry" />
+        </mxCell>
+        <mxCell id="FMwDaVfZEnFEAQgHHLUg-13" value="+self.sprite_sheet_info: dict&#xa;-self.color_key: tuple or list&#xa;-self.full_sheet_img: pygame.image" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontColor=#1D3557;" parent="FMwDaVfZEnFEAQgHHLUg-12" vertex="1">
+          <mxGeometry y="26" width="410" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="FMwDaVfZEnFEAQgHHLUg-14" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=#457B9D;fontColor=#1D3557;labelBackgroundColor=#F1FAEE;" parent="FMwDaVfZEnFEAQgHHLUg-12" vertex="1">
+          <mxGeometry y="90" width="410" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="FMwDaVfZEnFEAQgHHLUg-15" value="+__init__(self, file: str or pygame.image, sprite_sheet_info: dict,&#xa;    color_key: tuple or list=(0, 0, 0)):&#xa;+make_new_sheet_img(self, name: str, anker: tuple or list=(0, 0), &#xa;    img_size: int=1) -&gt; pygame.Surface:" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontColor=#1D3557;" parent="FMwDaVfZEnFEAQgHHLUg-12" vertex="1">
+          <mxGeometry y="98" width="410" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="FMwDaVfZEnFEAQgHHLUg-16" value="Map" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#A8DADC;strokeColor=#457B9D;fontColor=#1D3557;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="-720" y="-460" width="500" height="350" as="geometry" />
+        </mxCell>
+        <mxCell id="FMwDaVfZEnFEAQgHHLUg-17" value="+self.images: dict&#xa;+self.camera_position: list&#xa;+self.loop: list&#xa;-self.type: str&#xa;-self.color: tuple or list or str&#xa;-self.screen: Screen&#xa;-self.color_key: tuple or list&#xa;+self.id_: int&#xa;+self.speed: list" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontColor=#1D3557;" parent="FMwDaVfZEnFEAQgHHLUg-16" vertex="1">
+          <mxGeometry y="26" width="500" height="144" as="geometry" />
+        </mxCell>
+        <mxCell id="FMwDaVfZEnFEAQgHHLUg-18" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=#457B9D;fontColor=#1D3557;labelBackgroundColor=#F1FAEE;" parent="FMwDaVfZEnFEAQgHHLUg-16" vertex="1">
+          <mxGeometry y="170" width="500" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="FMwDaVfZEnFEAQgHHLUg-19" value="+__init__(self, screen: Screen, type_: str, color: tuple or list or str=(0, 0, 0)):&#xa;    # types = statick statick-img dynamic-img&#xa;+lode_new(self, id_: int):&#xa;+load_statick_img(self, id_: int, file: str or pygame.image):&#xa;+load_dynamic_img(self, id_: int, file: str or pygame.image, loop: tuple or list=(1, 0)):&#xa;+load_map(self, map_: list, spec: dict, id_: int):  # map_ = [&quot;x&quot;, &quot;x&quot;, &quot;x&quot;, &quot;/n&quot;,&#xa;                                                                                           &quot;x&quot;, &quot;x&quot;, &quot;x&quot;, &quot;/n&quot;,&#xa;                                                                                           &quot;x&quot;, &quot;x&quot;, &quot;x&quot;, &quot;/n&quot;]&#xa;    # spec = {&quot;spec&quot;: {&quot;map&quot;: (width, height), &quot;wh&quot;: ( width, height)}, &quot;x&quot;: img}&#xa;+camera_to_pos(self, pos: tuple or list):&#xa;+draw(self):&#xa;&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontColor=#1D3557;" parent="FMwDaVfZEnFEAQgHHLUg-16" vertex="1">
+          <mxGeometry y="178" width="500" height="172" as="geometry" />
+        </mxCell>
+        <mxCell id="FMwDaVfZEnFEAQgHHLUg-20" value="Sprite" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#A8DADC;strokeColor=#457B9D;fontColor=#1D3557;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="280" y="-1080" width="790" height="1710" as="geometry" />
+        </mxCell>
+        <mxCell id="FMwDaVfZEnFEAQgHHLUg-21" value="-self.screen: Screen&#xa;+self.name: str&#xa;-self.def_cord: str&#xa;-self.dt: int &#xa;&#xa;# vars for all objects&#xa;-self.type_: str &#xa;-self.collisions_level: int &#xa;-self.color: tuple&#xa;-self.draw_func: python function  # draw the sprite to screen&#xa;&#xa;# for type = line and rect&#xa;+self.width: float&#xa;+self.height: float&#xa;&#xa;# for type = line&#xa;+self.point1: tuple or list or None&#xa;+self.point2: tuple or list or None&#xa;&#xa;# for type = img&#xa;+self.img: pygame.image&#xa;+self.file: str&#xa;+self.img_size: int&#xa;&#xa;# for type = circle&#xa;+self.radius: float&#xa;&#xa;+self.aa_lines_list: list&#xa;+self.aa_lines_list_ob: List[&quot;Sprite&quot;]&#xa;+self.is_closed: bool&#xa;&#xa;# physics stuff&#xa;-self.physics: bool&#xa;-self.body_type: int&#xa;+self.body: pymunk.Body&#xa;+self.shape: pymunk.shapes&#xa;+self.elasticity: float&#xa;+self.density: float&#xa;+self.friction: float&#xa;+self.auto_angel: list[int, bool]&#xa;&#xa;# set behavior&#xa;+self.do_slow_down: bool&#xa;+self.debug_img_rot_draw: bool  # type specific img&#xa;+self.kill: bool&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontColor=#1D3557;" parent="FMwDaVfZEnFEAQgHHLUg-20" vertex="1">
+          <mxGeometry y="26" width="790" height="644" as="geometry" />
+        </mxCell>
+        <mxCell id="FMwDaVfZEnFEAQgHHLUg-22" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=#457B9D;fontColor=#1D3557;labelBackgroundColor=#F1FAEE;" parent="FMwDaVfZEnFEAQgHHLUg-20" vertex="1">
+          <mxGeometry y="670" width="790" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="FMwDaVfZEnFEAQgHHLUg-23" value="+__init__(self, screen: Screen, name: str, def_cord: str = &quot;bl&quot;):&#xa;+__str__(self) -&gt; str:&#xa;+do_kill(self) -&gt; bool:  # allows killing self if future necessary clear memory&#xa;+set_color(self, color: str or list or tuple, color_keys: list = ()):  # convert color for pygame using The Color module&#xa;+add_to_space(self, space_: pymunk.Space):  # adds shape and body to simulation space for pymunk&#xa;+set_shape_props(self):  # set extra physic props to object&#xa;+if_of_screen(self):  # test if position of object is not in screen ( you can&#39;t see it any loger )&#xa;+make_sprite(self,&#xa;    type_: str,&#xa;    collisions_level: int = 0,&#xa;    point1: list or tuple or None = None,&#xa;    point2: list or tuple or None = None,&#xa;    width: float = 0, height: float = 0,&#xa;    radius: float = 0,&#xa;    color: str or list or None = None,&#xa;    file: str or None or pygame.image = None,&#xa;    img_size: int = 1,&#xa;    mass: int = 1,&#xa;    moment: int = 1,&#xa;    position: list or tuple = (0, 0),&#xa;    velocity: list or tuple = (0, 0),&#xa;    elasticity: float = 0,&#xa;    physics: bool = False,&#xa;    ken: bool = False,&#xa;    density: float = 1,&#xa;    friction: float = 0,&#xa;    aa_lines_list: list or tuple = (),&#xa;    is_closed: bool = False,&#xa;    collisions_for_sep_aa_line: list or tuple = (),&#xa;    color_for_aa_line: list or tuple = (), new_body=True&#xa;&#xa;    :param type_: string type of object : img rect circle line box | not implemented jet: polygon ellipse&#xa;    :param collisions_level: int a real number for identifying object in physic simulation ( collision handler )&#xa;    :param point1: (int, int) point in  self.def_cord defined space used for type line&#xa;    :param point2: (int, int) point in  self.def_cord defined space used for type line&#xa;    :param width: int defined width of object&#xa;    :param height: int defined height of object&#xa;    :param radius: int defined radius of object&#xa;    :param color: (von 0 bis 255, von 0 bis 255,von 0 bis 255) defined color of object&#xa;    :param file: str or img the image witch should have been drawn on screen&#xa;    :param img_size: zoom in +1 or aut -1 normal image size = 1&#xa;    :param mass: float defined mass of object&#xa;    :param moment: float defined moment of object&#xa;    :param position: can bee (int or float, int or float) must bee bei initialising (int, int)&#xa;    :param velocity: float defined velocity of object&#xa;    :param elasticity: float defined elasticity of object&#xa;    :param physics: bool Body type = Statick (False) or Dynamic (True)&#xa;    :param ken: physics must bee True Body type = Kinematic (True) default False&#xa;    :param density: float defined density of object&#xa;    :param friction: float defined friction of object&#xa;    :param aa_lines_list: list of points to make a box object&#xa;    :param is_closed: connect the first and the last point of box oject&#xa;    :param collisions_for_sep_aa_line: set collisions_level for every single line&#xa;    :param color_for_aa_line: set color for every single line&#xa;    :param new_body: make new physic object default True&#xa;    :return: sprite object&#xa;) -&gt; Sprite:&#xa;&#xa;+draw_func():&#xa;-rect_(self):&#xa;+debug_draw_rect(self, color: list or tuple or str=(150, 150, 150)):  # draw a rect from top left to bottem right ( is not the hitbox)&#xa;-speed_convert_img(self):&#xa;+set_do_slow_down(self, set_: bool=False):&#xa;+slow_down(self, friction: float):  # self.do_slow_down must be True body slows down&#xa;+rotate(self, angle_rate: float, do: bool=False):  # set rotation speed if do is True else set slowdown rate if do is False&#xa;+do_rotate(self, f: float=0.1):  # rotate object by self.rotate(...) must bee called in main game loop&#xa;-img_(self):&#xa;-circle_(self):&#xa;-line_(self):&#xa;-aalines(self, collisions_for_sep_aa_line: list, color_for_aa_line: list):&#xa;@classmethod&#xa;-aa_lin(cls, aa_lines: Sprite, id: int, start_point: tuple or list, end_point: tuple or list, collisions_level: int, color: tuple or list or str=(0, 0, 0)) -&gt; Sprite:&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontColor=#1D3557;" parent="FMwDaVfZEnFEAQgHHLUg-20" vertex="1">
+          <mxGeometry y="678" width="790" height="1032" as="geometry" />
+        </mxCell>
+        <mxCell id="FMwDaVfZEnFEAQgHHLUg-29" value="" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;entryX=-0.005;entryY=0.282;entryDx=0;entryDy=0;entryPerimeter=0;strokeColor=#457B9D;fontColor=#1D3557;strokeWidth=4;labelBackgroundColor=#F1FAEE;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="FMwDaVfZEnFEAQgHHLUg-13" target="FMwDaVfZEnFEAQgHHLUg-11" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-180" y="-630" as="sourcePoint" />
+            <mxPoint x="-20" y="-630" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FMwDaVfZEnFEAQgHHLUg-30" value="parent" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;fontColor=#1D3557;labelBackgroundColor=#F1FAEE;" parent="FMwDaVfZEnFEAQgHHLUg-29" connectable="0" vertex="1">
+          <mxGeometry x="-1" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FMwDaVfZEnFEAQgHHLUg-31" value="child" style="edgeLabel;resizable=0;html=1;align=right;verticalAlign=bottom;fontColor=#1D3557;labelBackgroundColor=#F1FAEE;" parent="FMwDaVfZEnFEAQgHHLUg-29" connectable="0" vertex="1">
+          <mxGeometry x="1" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FMwDaVfZEnFEAQgHHLUg-32" value="" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;entryX=0.937;entryY=-0.003;entryDx=0;entryDy=0;entryPerimeter=0;strokeColor=#457B9D;fontColor=#1D3557;labelBackgroundColor=#F1FAEE;strokeWidth=4;" parent="WIyWlLk6GJQsqaUBKTNV-1" target="FMwDaVfZEnFEAQgHHLUg-8" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="330" y="-1060" as="sourcePoint" />
+            <mxPoint x="170" y="-900" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="330" y="-1060" />
+              <mxPoint x="330" y="-1100" />
+              <mxPoint x="185" y="-1100" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FMwDaVfZEnFEAQgHHLUg-33" value="parent" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;fontColor=#1D3557;labelBackgroundColor=#F1FAEE;" parent="FMwDaVfZEnFEAQgHHLUg-32" connectable="0" vertex="1">
+          <mxGeometry x="-1" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FMwDaVfZEnFEAQgHHLUg-34" value="child" style="edgeLabel;resizable=0;html=1;align=right;verticalAlign=bottom;fontColor=#1D3557;labelBackgroundColor=#F1FAEE;" parent="FMwDaVfZEnFEAQgHHLUg-32" connectable="0" vertex="1">
+          <mxGeometry x="1" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FMwDaVfZEnFEAQgHHLUg-36" value="Use" style="endArrow=open;endSize=12;dashed=1;html=1;exitX=0.997;exitY=-0.017;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.997;entryY=1.038;entryDx=0;entryDy=0;entryPerimeter=0;strokeColor=#457B9D;fontColor=#1D3557;strokeWidth=4;labelBackgroundColor=#F1FAEE;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="FMwDaVfZEnFEAQgHHLUg-5" target="FMwDaVfZEnFEAQgHHLUg-3" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="-530" y="-740" as="sourcePoint" />
+            <mxPoint x="-370" y="-740" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FMwDaVfZEnFEAQgHHLUg-38" value="Use" style="endArrow=open;endSize=12;dashed=1;html=1;exitX=-0.008;exitY=0.284;exitDx=0;exitDy=0;exitPerimeter=0;entryX=-0.005;entryY=0.392;entryDx=0;entryDy=0;entryPerimeter=0;strokeColor=#457B9D;fontColor=#1D3557;labelBackgroundColor=#F1FAEE;strokeWidth=4;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="FMwDaVfZEnFEAQgHHLUg-17" target="FMwDaVfZEnFEAQgHHLUg-1" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="-361.04999999999995" y="-901.02" as="sourcePoint" />
+            <mxPoint x="-361.04999999999995" y="-1001.0120000000001" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-780" y="-393" />
+              <mxPoint x="-780" y="-1091" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FMwDaVfZEnFEAQgHHLUg-39" value="Use" style="endArrow=open;endSize=12;dashed=1;html=1;exitX=0;exitY=0.037;exitDx=0;exitDy=0;exitPerimeter=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#457B9D;fontColor=#1D3557;labelBackgroundColor=#F1FAEE;strokeWidth=4;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="FMwDaVfZEnFEAQgHHLUg-21" target="FMwDaVfZEnFEAQgHHLUg-1" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="-361.04999999999995" y="-901.02" as="sourcePoint" />
+            <mxPoint x="-361.04999999999995" y="-1001.0120000000001" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-110" y="-1030" />
+              <mxPoint x="-110" y="-1080" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FMwDaVfZEnFEAQgHHLUg-41" value="&lt;font color=&quot;#fdfdfd&quot; style=&quot;background-color: rgb(2 , 128 , 144)&quot;&gt;return&lt;/font&gt;" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;fontColor=#1D3557;strokeColor=#457B9D;fillColor=#A8DADC;exitX=0.664;exitY=-0.006;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.002;entryY=0.007;entryDx=0;entryDy=0;entryPerimeter=0;labelBackgroundColor=#F1FAEE;strokeWidth=4;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="FMwDaVfZEnFEAQgHHLUg-8" target="FMwDaVfZEnFEAQgHHLUg-20" edge="1">
+          <mxGeometry x="0.0588" y="-5" relative="1" as="geometry">
+            <mxPoint x="80" y="-850" as="sourcePoint" />
+            <mxPoint x="90" y="-890" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="79" y="-1070" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n_gj3XwwI1YD6v5uSz1g-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="n_gj3XwwI1YD6v5uSz1g-0">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="15" y="-500" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-180" y="-420" />
+              <mxPoint x="15" y="-420" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n_gj3XwwI1YD6v5uSz1g-0" value="Player" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="-380" y="70" width="380" height="314" as="geometry" />
+        </mxCell>
+        <mxCell id="n_gj3XwwI1YD6v5uSz1g-1" value="+ name: str&#xa;+ can_respawn: bool&#xa;- controls: dict&#xa;+ health: int&#xa;+ experience: int&#xa;+ powerUp: str&#xa;- damage: int&#xa;+ inventory: dict&#xa;+/- speed: int&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="n_gj3XwwI1YD6v5uSz1g-0">
+          <mxGeometry y="26" width="380" height="144" as="geometry" />
+        </mxCell>
+        <mxCell id="n_gj3XwwI1YD6v5uSz1g-2" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="n_gj3XwwI1YD6v5uSz1g-0">
+          <mxGeometry y="170" width="380" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="n_gj3XwwI1YD6v5uSz1g-3" value="+ __init__(self, name: str, speed: int, controls: dict = {&quot;L&quot;: &quot;a&quot;, &quot;R&quot;: &quot;d&quot;, &quot;U&quot;: &quot;w&quot;, &quot;D&quot;: &quot;s&quot;, &quot;J&quot;, &quot; &quot;, &quot;S&quot;: &quot;mr&quot;, &quot;RL&quot;: &quot;q&quot;, &quot;RR&quot;: &quot;e&quot;}) &#xa;+ load_avatar()&#xa;+ move()&#xa;+ jump()&#xa;+ respawn()&#xa;+ pick_up()&#xa;+ use()&#xa;+ upgrade()&#xa;+ interact()" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="n_gj3XwwI1YD6v5uSz1g-0">
+          <mxGeometry y="178" width="380" height="136" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
