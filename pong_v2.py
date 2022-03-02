@@ -19,9 +19,9 @@ def functional():
 
     # game modi
 
-    rotation = False
-    ball_color = False
-    beast_mode = ball_color and False
+    rotation = True
+    ball_color = True
+    beast_mode = ball_color and True
 
     # Open a Window -
     screen = Screen(width=1236, height=512, title="Pong")
@@ -32,7 +32,6 @@ def functional():
     game_pad_width = 30
     game_pad_height = 120
     of_x = 10
-
 
     # -------------------player1----------------#
     player1 = Sprite(screen, "player1")  # rect

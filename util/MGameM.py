@@ -360,7 +360,6 @@ class Sprite:  # blueprint for super class handles all game objects to print and
             self.img = pygame.transform.scale(self.img, (self.width, self.height))
 
         def draw_func():
-
             x, y = parser((self.body.position[0], self.body.position[1]), self.screen.height)
             image_rect = self.img.get_rect(
                 topleft=(x - self.width / 2, y - self.height / 2))
@@ -614,7 +613,7 @@ class Sheet:
         if type(file) == str:
             self.full_sheet_img = pygame.image.load(str(file)).convert_alpha()
 
-    def make_new_sheet_img(self, name, anker=(0, 0), img_size=1):
+    def make_new_sheet_img(self, name, anker=(0, 0), img_size=1) -> pygame.Surface:
         _1, _2, width, height = self.sprite_sheet_info[name]
         sprite = pygame.Surface((width, height))
         sprite.set_colorkey(self.color_key)
