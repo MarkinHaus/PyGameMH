@@ -82,9 +82,6 @@ class Sprite:  # blueprint for super class handles all game objects to print and
         self.debug_img_rot_draw = False  # type specific img
         self.kill = False
 
-    def __str__(self):
-        return f"Type: {self.type_}, name {self.name}, id:  {self}, \n"
-
     def do_kill(self):  # allows killing self if future necessary clear memory
         return self.kill
 
@@ -560,10 +557,11 @@ class Map:  # sorry not finished jet | Build on top fo Sprites
                                               -abs(self.images[self.id_].body.position[1] - pos[1])
 
     def draw(self):
-        self.screen.surface.fill(self.color)
+        #self.screen.surface.fill(self.color)
         if self.type == "statick-img":
             self.images[self.id_].draw_func()
         if self.type == "dynamic-img":
+            self.screen.surface.fill(self.color)
 
             self.images[self.id_].body.position = [self.images[self.id_].body.position[0] + self.speed[0],
                                                    self.images[self.id_].body.position[1] + self.speed[1]]

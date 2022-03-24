@@ -70,15 +70,23 @@ def functional():
     # }
     print(sprite_sheet_data)
     dc_ideal = {}
-    sprite_sheet_data_ideal = list(range(0, 24))
+    sprite_sheet_data_ideal = list(range(0, 12))
     l = 0
     for i in sprite_sheet_data_ideal:
         dc_ideal[str(l)] = sprite_sheet_data[0][i]
         l += 1
+
+    dc_walk = {}
+    sprite_sheet_data_ideal = list(range(12, 23))
+    l = 0
+    for i in sprite_sheet_data_ideal:
+        dc_walk[str(l)] = sprite_sheet_data[0][i]
+        l += 1
     player = Animation(screen=screen, name="test", file="img/Stickmanswordsprites2.png",
                        color_key=(138, 138, 138))
 
-    player.make_new_animation("koreo", dc_ideal, size=.6)
+    player.make_new_animation("walk", dc_walk, size=.6)
+    player.make_new_animation("ideal", dc_ideal, size=.6)
 
     # warp_alim.debug_img_rot_draw = True
 
@@ -124,6 +132,42 @@ def functional():
                 run = False
                 pygame.quit()
                 exit(0)
+
+            if event.type == pygame.KEYDOWN:
+
+                # if game is not over
+                    if event.key == pygame.K_s:
+                        player.set_do_slow_down(False)
+                        player.body.velocity = (player.body.velocity[0], -250)
+
+                    if event.key == pygame.K_a:
+                        player.set_do_slow_down(False)
+                        player.body.velocity = (-250, player.body.velocity[1])
+
+                    if event.key == pygame.K_d:
+                        player.set_do_slow_down(False)
+                        player.load_animation("walk")
+                        player.body.velocity = (250, player.body.velocity[1])
+
+                    if event.key == pygame.K_q:
+                        player.rotate(.25, True)
+
+                    if event.key == pygame.K_e:
+                        player.rotate(-.25, True)
+
+                    if event.key == pygame.K_SPACE:
+                        player.set_do_slow_down(False)
+                        player.body.velocity = (player.body.velocity[0], 300)
+
+            if event.type == pygame.KEYUP:
+                player.load_animation("ideal")
+                player.set_do_slow_down(True)
+
+                if event.key == pygame.K_q:
+                    player.rotate(.3, False)
+
+                if event.key == pygame.K_e:
+                    player.rotate(-.3, False)
         # -------------------print score----------------#
         text.show(f"TEXT", (screen.width - 180, 60), (0, 0, 0))
 
@@ -131,6 +175,9 @@ def functional():
 
         player.next_step(24)
         player.draw_func()
+        player.do_rotate()
+        player.slow_down(1.9)
+        player.body.angular_velocity = 0
         #player.debug_draw_rect((255, 0,255))
 
         list(map(lambda sprite_: sprite_.draw_func(), sprites))
